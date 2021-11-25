@@ -1,0 +1,17 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.row * {
+    margin: 5px 0;
+}
+
+textarea#textarea {
+    margin: 0px 0px 0px 50px;
+}
+
+#submit {
+    margin: 0 0 0 50px;
+}
