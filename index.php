@@ -26,9 +26,7 @@
                                         <button id='index_submit' class='btn btn-secondary'>Absenden</button>
                                     </div>";
                     if(isset($_SESSION['valid_user']))
-                    {
                         echo($user_entry);
-                    }
                 ?>
             </div>
         </div>

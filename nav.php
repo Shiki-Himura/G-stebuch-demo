@@ -33,13 +33,9 @@
                           <a class='nav-link text-success' id='logout_user' href='login.php'>Logout</a>
                         </li>";
             if(isset($_SESSION['valid_user']))
-            {
               echo($loggedin);
-            }
             else
-            {
               echo($nouser);
-            }
           ?>
         </ul>
         <form class="d-flex">
