@@ -10,20 +10,26 @@
 </head>
 <body>
     <?php
-        require_once 'nav.html';
+        require_once 'nav.php';
     ?>
     <div class="container">
         <div class="row">
             <div class="col">
-                <label>Name:
-                    <input id="name">
-                </label>
-                <div>
-                    <textarea id="textarea" type="text" cols="50" rows="10"></textarea>
-                </div>
-                <div>
-                    <button id="index_submit" class="btn btn-secondary">Absenden</button>
-                </div>
+                <?php
+                    $user_entry = "<label>Name:
+                                        <input id='name'>
+                                    </label>
+                                    <div>
+                                        <textarea id='textarea' type='text' cols='50' rows='10'></textarea>
+                                    </div>
+                                    <div>
+                                        <button id='index_submit' class='btn btn-secondary'>Absenden</button>
+                                    </div>";
+                    if(isset($_SESSION['valid_user']))
+                    {
+                        echo($user_entry);
+                    }
+                ?>
             </div>
         </div>
         <div class="row" id="dbcontent">

@@ -4,6 +4,7 @@ $(function(){
 
     
     var error = $("#error_message");
+    var logerror = $("#login_error");
     let user_available = false;
     let user_exists = false;
     
@@ -25,7 +26,7 @@ $(function(){
         }
         
 
-        var reg_request = new XMLHttpRequest();
+        const reg_request = new XMLHttpRequest();
         reg_request.onload = function() {
             user_available = this.responseText;
             if(user_available == false)
@@ -39,14 +40,14 @@ $(function(){
         reg_request.send("check=check&un="+reg_user.val());
 
 
-        var register = new XMLHttpRequest();
+        let register = new XMLHttpRequest();
         register.onload = function() {
             if(user_available == true)
             {
                 window.location.href = "login.php";
             }
         };
-        register.open("POST", "register_handler.php");
+        register.open("POST", "register_handler.php", false);
         register.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         register.send("check=register&un="+reg_user.val()+"&pw="+reg_password.val());
     });
@@ -55,32 +56,36 @@ $(function(){
     $("#index_login").on("click", function() {
         let log_user = $("#log_un");
         let log_password = $("#log_pw");
-
-        if(log_user.val() == "" || log_password.val() == "")
+        
+        if(log_user.val()=="" || log_password.val()=="")
         {
-            error.html("Please enter missing Information!");
+            logerror.html("Please enter missing Information!");
             return;
         }
-
-        // TODO: implement login
+        
         let login = new XMLHttpRequest();
-        login.onload = function() {
+        login.onload = function(){
             user_exists = this.responseText;
             if(user_exists == false)
             {
-                error.html("User doesn´t exist!");
+                logerror.html("Please check your Username/Password");
                 return;
             }
-            login.open("POST", "login_handler.php", false);
-            login.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            login.send("login=user&un="+log_user.val());
+
+            if(user_exists == true)
+            {
+                window.location.href = "index.php";
+            }
         };
+        login.open("POST", "login_handler.php");
+        login.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        login.send("login=user&un="+log_user.val()+"&pw="+log_password.val());
     });
 
     
     $("#index_submit").on('click', function(){
         // TODO: refactor click event handler to $.ajax syntax
-        const request = new XMLHttpRequest();
+        let request = new XMLHttpRequest();
         request.onload = function(){
             $('#dbcontent').innerHTML = this.responseText;
         };
@@ -89,4 +94,7 @@ $(function(){
         request.send("name="+name.val()+"&text="+text.val());
     });
 
+    $("#logout_user").on("click", function() {
+        
+    });
 });

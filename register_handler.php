@@ -1,6 +1,4 @@
 <?php
-
-
     $connection = new mysqli('localhost', 'root', '', 'gästebuch');
     if(mysqli_connect_error())
     {

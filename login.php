@@ -10,17 +10,18 @@
 </head>
 <body>
     <?php
-        require_once 'nav.html';
+        require_once 'nav.php';
     ?>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-4 d-flex flex-column">
                 <label>Name:
-                    <input class="float-end" id="log_un" type="text">
+                    <input class="float-end" id="log_un" type="text" placeholder="Username">
                 </label>
                 <label>Password:
-                    <input class="float-end" id="log_pw" type="password">
+                    <input class="float-end" id="log_pw" type="password" placeholder="Password">
                 </label>
+                <div class="fs-6 text-danger" id="login_error"></div>
             </div>
         </div>
         <div class="row justify-content-center">
