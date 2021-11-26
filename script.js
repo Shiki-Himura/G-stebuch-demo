@@ -73,9 +73,9 @@ $(function(){
             if(user_exists == true)
                 window.location.href = "index.php";
         };
-        login.open("POST", "login_handler.php");
+        login.open("POST", "Logic/AccountManager.php");
         login.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        login.send("login=user&un="+log_user.val()+"&pw="+log_password.val());
+        login.send("key=execlogin&login=user&un="+log_user.val()+"&pw="+log_password.val());
     });
 
     
