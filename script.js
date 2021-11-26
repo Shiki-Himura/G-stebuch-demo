@@ -43,9 +43,7 @@ $(function(){
         let register = new XMLHttpRequest();
         register.onload = function() {
             if(user_available == true)
-            {
                 window.location.href = "login.php";
-            }
         };
         register.open("POST", "register_handler.php", false);
         register.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -73,9 +71,7 @@ $(function(){
             }
 
             if(user_exists == true)
-            {
                 window.location.href = "index.php";
-            }
         };
         login.open("POST", "login_handler.php");
         login.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -93,8 +89,5 @@ $(function(){
         request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         request.send("name="+name.val()+"&text="+text.val());
     });
-
-    $("#logout_user").on("click", function() {
-        
-    });
+    
 });

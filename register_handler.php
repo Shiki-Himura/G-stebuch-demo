@@ -13,13 +13,9 @@
         $row = $result->fetch_object();
 
         if($row->usercount == 1)
-        {
             echo false;
-        }
         else
-        {
             echo true;
-        }
     }
 
     if($_REQUEST['check']=="register")

@@ -19,8 +19,6 @@
             echo true;
         }
         else
-        {
             echo false;
-        }
     }
 ?>
