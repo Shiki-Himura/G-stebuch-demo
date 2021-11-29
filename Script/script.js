@@ -26,7 +26,7 @@ $(function(){
         }
         
 
-        const reg_request = new XMLHttpRequest();
+        let reg_request = new XMLHttpRequest();
         reg_request.onload = function() {
             user_available = this.responseText;
             if(user_available == false)
@@ -35,19 +35,19 @@ $(function(){
                 return;
             }
         };
-        reg_request.open("POST", "register_handler.php", false);
+        reg_request.open("POST", "./Logic/AccountManager.php", false);
         reg_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        reg_request.send("check=check&un="+reg_user.val());
+        reg_request.send("key=validate&un="+reg_user.val());
 
 
         let register = new XMLHttpRequest();
         register.onload = function() {
             if(user_available == true)
-                window.location.href = "login.php";
+                window.location.href = "./login.php";
         };
-        register.open("POST", "register_handler.php", false);
+        register.open("POST", "./Logic/AccountManager.php");
         register.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        register.send("check=register&un="+reg_user.val()+"&pw="+reg_password.val());
+        register.send("key=execregister&un="+reg_user.val()+"&pw="+reg_password.val());
     });
 
     
@@ -71,21 +71,32 @@ $(function(){
             }
 
             if(user_exists == true)
-                window.location.href = "index.php";
+                window.location.href = "./index.php";
         };
-        login.open("POST", "Logic/AccountManager.php");
+        login.open("POST", "./Logic/AccountManager.php");
         login.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         login.send("key=execlogin&login=user&un="+log_user.val()+"&pw="+log_password.val());
     });
 
-    
+    $("#logout_user").on("click", function() {
+        let logout = new XMLHttpRequest();
+        logout.onload = function(){
+            console.log(this.responseText);
+            window.location.href = "./index.php";
+        };
+        logout.open("POST", "./Logic/AccountManager.php");
+        logout.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        logout.send("key=execlogout");
+    });
+
+
     $("#index_submit").on('click', function(){
         // TODO: refactor click event handler to $.ajax syntax
         let request = new XMLHttpRequest();
         request.onload = function(){
             $('#dbcontent').innerHTML = this.responseText;
         };
-        request.open('POST', 'request.php');
+        request.open('POST', './Logic/DB/request.php');
         request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         request.send("name="+name.val()+"&text="+text.val());
     });

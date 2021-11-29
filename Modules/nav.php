@@ -7,7 +7,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a class="navbar-brand" href="login.php">Gästebuch</a>
+        <a class="navbar-brand" href="index.php">Gästebuch</a>
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">Home</a>
@@ -18,22 +18,24 @@
         </ul>
         <ul class="navbar-nav mb-2 mb-lg-0">
           <?php
+            if(!isset($_SESSION['valid_user']))
+              $_SESSION['valid_user'] = null;
             $nouser = "
-            <li class='nav-item'>
-              <a class='nav-link text-success' href='login.php'>Login</a>
-              </li>
-              <li class='nav-item'>
-                <a class='nav-link text-primary' href='register.php'>Register</a>
-            </li>";
+                        <li class='nav-item'>
+                          <a class='nav-link text-success' href='login.php'>Login</a>
+                        </li>
+                        <li class='nav-item'>
+                          <a class='nav-link text-primary' href='register.php'>Register</a>
+                        </li>";
             $loggedin = "
-            <li class='nav-item'>
-              <div class='mt-2'>Willkommen
-                <a id='user-profile' href='#'>".$_SESSION['valid_user']."!</a>
-              </div>
-              </li>
-              <li class='nav-item'>
-                <a class='nav-link text-success' id='logout_user' href='login.php'>Logout</a>
-            </li>";
+                        <li class='nav-item'>
+                          <div class='mt-2'>Willkommen
+                            <a id='user-profile' href='#'>".$_SESSION['valid_user']."!</a>
+                          </div>
+                        </li>
+                        <li class='nav-item'>
+                          <a class='nav-link text-success' id='logout_user' href='javascript:void(0)'>Logout</a>
+                        </li>";
             if(isset($_SESSION['valid_user']))
               echo($loggedin);
             else
