@@ -1,5 +1,10 @@
 $(function(){
     $('#current-user').css('textShadow','2px 2px 4px lightgrey');
+    $(".navbar").css(
+        {
+            background:'linear-gradient(65deg, #0000ff 0%, #000000 25%, #000022 50%, #000055 75%, #000099 100%',
+            color:'rgb(255, 255, 255)'
+        });
 
     
     var error = $("#error_message");
