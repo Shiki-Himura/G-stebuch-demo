@@ -9,7 +9,7 @@
 }
 
 textarea#textarea {
-    margin: 0px 0px 0px 50px;
+    margin: 0px 0px 0px 0px;
 }
 
 #submit {
@@ -17,5 +17,9 @@ textarea#textarea {
 }
 
 #user-profile {
+    text-decoration: none;
+}
+
+div a {
     text-decoration: none;
 }

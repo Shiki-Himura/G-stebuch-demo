@@ -1,6 +1,5 @@
 <?php
 include __DIR__."/Data/Data/UserData_data.php";
-
 class AccountManager
 {
     private $account;
@@ -40,7 +39,7 @@ class AccountManager
     
     public function Register()
     {
-        $result = $this->account->CreateUser();
+        $this->account->CreateUser();
         echo("Successfully registered!");
     }
 }

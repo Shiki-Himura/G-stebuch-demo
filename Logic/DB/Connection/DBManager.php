@@ -32,5 +32,14 @@ class DBManager
         }
         return $result_array;
     }
+
+    public function ExecuteNonQuery($query)
+    {
+        $connection = $this->SetupConnection();
+        $result = $connection->query($query);
+        $_SESSION['last_id'] = $connection->insert_id;
+
+        return $result;
+    }
 }
 ?>

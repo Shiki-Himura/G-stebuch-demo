@@ -44,9 +44,7 @@ class UserData_data
         if(isset($_REQUEST['key']))
         {
             $query = "INSERT INTO userdata (`username`, `password`) VALUES ('".$_REQUEST['un']."','".$_REQUEST['pw']."')";
-            $result = $this->db->Execute($query);
-            
-            return $result;
+            $this->db->Execute($query);
         }
     }
 }

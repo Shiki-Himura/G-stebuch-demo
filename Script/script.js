@@ -1,6 +1,5 @@
 $(function(){
-    var name = $("#name");
-    var text = $("#textarea");
+    $('#current-user').css('textShadow','2px 2px 4px lightgrey');
 
     
     var error = $("#error_message");
@@ -81,7 +80,6 @@ $(function(){
     $("#logout_user").on("click", function() {
         let logout = new XMLHttpRequest();
         logout.onload = function(){
-            console.log(this.responseText);
             window.location.href = "./index.php";
         };
         logout.open("POST", "./Logic/AccountManager.php");
@@ -94,11 +92,25 @@ $(function(){
         // TODO: refactor click event handler to $.ajax syntax
         let request = new XMLHttpRequest();
         request.onload = function(){
-            $('#dbcontent').innerHTML = this.responseText;
+            $('#dbcontent').html(this.responseText);
         };
-        request.open('POST', './Logic/DB/request.php');
+        request.open('POST', './Logic/ContentManager.php');
         request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        request.send("name="+name.val()+"&text="+text.val());
+        request.send("key=setcontent&text="+text.val());
+    });
+
+    $("#post_submit").on("click", function(){
+        let post_title = $("#post-title");
+        let post_description = $("#post-description");
+        let post_text = $("#post-text");
+
+        let request = new XMLHttpRequest();
+        request.onload = function(){
+            window.location.href = "index.php";
+        };
+        request.open('POST', './Logic/ContentManager.php');
+        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        request.send("key=setpost&title="+post_title.val()+"&description="+post_description.val()+"&posttext="+post_text.val());
     });
     
 });
