@@ -1,4 +1,4 @@
-<table class="table table-striped table-dark">
+<table id="post-table" class="table table-striped table-dark">
     <thead>
         <tr>
             <th>Title</th>

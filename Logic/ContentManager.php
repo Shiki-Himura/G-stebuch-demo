@@ -18,15 +18,15 @@ class ContentManager
         $this->post = new Post_Data();
     }
 
-    public function GetContent()
+    public function GetEntries()
     {
-        $result = $this->content->GetAllEntriesSortDesc();
+        $result = $this->content->GetAllEntriesSortByPostID();
         $html = "";
 
         for($i = 0; $i < Count($result); $i++)
         {
-            $previewBody = "<div class='card'>
-                            <div class='card-header'>".$result[$i]->Name."
+            $previewBody = "<div class='card text-white bg-dark'>
+                            <div class='card-header text-muted'>".$result[$i]->Name."
                             <div class='float-end'>".$result[$i]->Date."</div>
                             </div>
                             <div class='card-body'>
@@ -38,28 +38,23 @@ class ContentManager
         echo $html;
     }
 
-    public function SetContent()
+    public function SetEntry()
     {
         $this->content->CreateNewEntry();
     }
 
-    public function SetPost()
-    {
-        $this->post->CreateNewEntry();
-        $this->content->CreateNewEntry();
-    }
-
+    
     public function GetPosts()
     {
         $result = $this->post->GetAllEntries();
         $html = "";
-
+        
         for($i = 0; $i < Count($result); $i++)
         {
             $previewBody = "<tr>
                                 <td>
                                     <div>
-                                        <a href=''>".$result[$i]->Title."</a>
+                                        <a href='index.php?postid=".$result[$i]->ID."'>".$result[$i]->Title."</a>
                                     </div>
                                     <div class='text-muted'>".$result[$i]->Description."</div>
                                 </td>
@@ -67,22 +62,26 @@ class ContentManager
                                 <td>".$result[$i]->Date."</td>
                             </tr>";
             $html .= $previewBody;
-        }
+            }
         echo $html;
+    }
+    public function SetPost()
+    {
+        $this->post->CreateNewEntry();
+        $this->content->CreateNewEntry();
     }
 }
 
 $manager = new ContentManager();
 
 if(isset($_REQUEST['key']) && $_REQUEST['key'] == "setcontent")
-{
-    $manager->SetContent();
-}
+    $manager->SetEntry();
 
 if(isset($_REQUEST['key']) && $_REQUEST['key'] == "setpost")
-{
     $manager->SetPost();
-}
 
-$manager->GetPosts();
+if(isset($_GET['postid']))
+    $manager->GetEntries();
+else
+    $manager->GetPosts();
 ?>

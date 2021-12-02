@@ -1,8 +1,8 @@
 $(function(){
-    $('#current-user').css('textShadow','2px 2px 4px lightgrey');
+    $('#current-user').css('textShadow','2px 2px 5px #000000');
     $(".navbar").css(
         {
-            background:'linear-gradient(65deg, #0000ff 0%, #000000 25%, #000022 50%, #000055 75%, #000099 100%',
+            background:'linear-gradient(90deg, #ddddf1 0%, #0000c4 25%, #0000c4 50%, #0000c4 75%, #ddddf1 100%',
             color:'rgb(255, 255, 255)'
         });
 
@@ -41,7 +41,7 @@ $(function(){
         };
         reg_request.open("POST", "./Logic/AccountManager.php", false);
         reg_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        reg_request.send("key=validate&un="+reg_user.val());
+        reg_request.send("key=validate&un=" + reg_user.val());
 
 
         let register = new XMLHttpRequest();
@@ -51,7 +51,7 @@ $(function(){
         };
         register.open("POST", "./Logic/AccountManager.php");
         register.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        register.send("key=execregister&un="+reg_user.val()+"&pw="+reg_password.val());
+        register.send("key=execregister&un=" + reg_user.val() + "&pw=" + reg_password.val());
     });
 
     
@@ -79,7 +79,7 @@ $(function(){
         };
         login.open("POST", "./Logic/AccountManager.php");
         login.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        login.send("key=execlogin&login=user&un="+log_user.val()+"&pw="+log_password.val());
+        login.send("key=execlogin&login=user&un=" + log_user.val() + "&pw=" + log_password.val());
     });
 
     $("#logout_user").on("click", function() {
@@ -95,13 +95,16 @@ $(function(){
 
     $("#index_submit").on('click', function(){
         // TODO: refactor click event handler to $.ajax syntax
+        let post_comment = $("#post-description");
         let request = new XMLHttpRequest();
         request.onload = function(){
-            $('#dbcontent').html(this.responseText);
+            $('#post-comment').html(this.responseText);
+            post_comment.val("");
         };
-        request.open('POST', './Logic/ContentManager.php');
+        let get_urlval = window.location.href.split("?")[1];
+        request.open('POST', './Logic/ContentManager.php?' + get_urlval);
         request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        request.send("key=setcontent&text="+text.val());
+        request.send("key=setcontent&posttext="+post_comment.val());
     });
 
     $("#post_submit").on("click", function(){
@@ -115,7 +118,7 @@ $(function(){
         };
         request.open('POST', './Logic/ContentManager.php');
         request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        request.send("key=setpost&title="+post_title.val()+"&description="+post_description.val()+"&posttext="+post_text.val());
+        request.send("key=setpost&title=" + post_title.val() + "&description=" + post_description.val() + "&posttext=" + post_text.val());
     });
-    
+
 });

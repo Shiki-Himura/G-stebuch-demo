@@ -12,7 +12,10 @@
 </div>
 <div class="row" id="dbcontent">
     <?php
-        include_once './Modules/posts.php';
+        if(isset($_GET['postid']))
+            include_once "./Modules/post_content.php";
+        else
+            include_once './Modules/posts.php';
     ?>
 </div>
 <?php

@@ -14,15 +14,19 @@ class Content_Data
         $this->db = new DBManager();
     }
 
-    public function GetAllEntriesSortDesc()
+    public function GetAllEntriesSortByPostID()
     {
-        $query = "SELECT * FROM `content` ORDER BY ID DESC";
+        $query = "SELECT * FROM `content` WHERE `post_ID` = '".$_GET['postid']."'";
         return $this->db->Execute($query);
     }
 
     public function CreateNewEntry()
     {
-        $query = "INSERT INTO `content` (`Name`,`Text`,`post_ID`) VALUES ('".$_SESSION['valid_user']."','".$_REQUEST['posttext']."','".$_SESSION['last_id']."')";
+        $id = $_SESSION['last_id'];
+        if(isset($_GET['postid']))
+            $id = $_GET['postid'];
+
+        $query = "INSERT INTO `content` (`Name`,`Text`,`post_ID`) VALUES ('".$_SESSION['valid_user']."','".$_REQUEST['posttext']."','".$id."')";
         $this->db->ExecuteNonQuery($query);
     }
 }
