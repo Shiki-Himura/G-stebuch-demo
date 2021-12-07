@@ -29,6 +29,23 @@ $(function(){
             return;
         }
         
+        // validate user registration
+        
+        // let request;
+        // request = $.ajax({
+        //     type: "POST",
+        //     url: "Logic/AccountManager.php",
+        //     data: { "key":"validate", "un":reg_user.val() },
+        //     success: function(response) {
+        //         user_available = response;
+        //         console.log(user_available);
+        //         if(user_available == false)
+        //         {
+        //             error.html("User already exists!");
+        //             return;
+        //         }
+        //     }
+        // });
 
         let reg_request = new XMLHttpRequest();
         reg_request.onload = function() {

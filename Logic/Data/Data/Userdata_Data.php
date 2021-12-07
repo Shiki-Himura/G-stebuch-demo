@@ -41,7 +41,7 @@ class UserData_data
             echo "Database connection failed";
             exit;
         }
-        if(isset($_REQUEST['key']))
+        if(isset($_REQUEST["key"]))
         {
             $query = "INSERT INTO userdata (`username`, `password`) VALUES ('".$_REQUEST['un']."','".$_REQUEST['pw']."')";
             $this->db->Execute($query);
