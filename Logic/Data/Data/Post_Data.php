@@ -16,13 +16,14 @@ class Post_Data
 
     public function CreateNewEntry()
     {
-        $query = "INSERT INTO posts (`Author`,`Title`,`Description`) VALUES ('".$_SESSION['valid_user']."','".$_REQUEST['title']."','".$_REQUEST['description']."')";
+        $query = "INSERT INTO posts (`Author`,`Title`,`Description`,`category_ID`) " 
+                ."VALUES ('".$_SESSION['valid_user']."','".$_REQUEST['title']."','".$_REQUEST['description']."','".$_REQUEST['category_id']."')";
         return $this->db->ExecuteNonQuery($query);
     }
 
     public function GetAllEntries()
     {
-        $query = "SELECT * FROM `posts`";
+        $query = "SELECT * FROM `posts` WHERE `category_ID` = '".$_REQUEST['category_id']."'";
         return $this->db->Execute($query);
     }
 }

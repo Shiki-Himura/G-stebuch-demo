@@ -27,7 +27,7 @@ class ContentManager
         {
             $previewBody = "<div class='card text-white bg-dark'>
                             <div class='card-header text-muted'>".$result[$i]->Name."
-                            <div class='float-end'>".$result[$i]->Date."</div>
+                                <div class='float-end'>".$result[$i]->Date."</div>
                             </div>
                             <div class='card-body'>
                             <p class='card-text'>".$result[$i]->Text."</p>
@@ -54,21 +54,39 @@ class ContentManager
             $previewBody = "<tr>
                                 <td>
                                     <div>
-                                        <a href='index.php?postid=".$result[$i]->ID."'>".$result[$i]->Title."</a>
+                                        <a class='fs-4' href='index.php?postid=".$result[$i]->ID."'>".$result[$i]->Title."</a>
                                     </div>
-                                    <div class='text-muted'>".$result[$i]->Description."</div>
+                                    <div class='text-muted fs-6'>".$result[$i]->Description."</div>
                                 </td>
-                                <td>".$result[$i]->Author."</td>
+                                <td id='author'>".$result[$i]->Author."</td>
                                 <td>".$result[$i]->Date."</td>
                             </tr>";
             $html .= $previewBody;
             }
         echo $html;
     }
+
     public function SetPost()
     {
         $this->post->CreateNewEntry();
         $this->content->CreateNewEntry();
+    }
+
+    public function DisplayCategories()
+    {
+        $result = $this->content->GetCategory();
+        $html = "";
+        
+        for($i = 0; $i < Count($result); $i++)
+        {
+            $previewBody = "<li class='list-group-item'>
+                                <h3><a href='index.php?category_id=".$result[$i]->ID."'>".$result[$i]->Name."</a></h3>
+                                <div class='text-muted'>".$result[$i]->Description."</div>
+                            </li>";
+
+            $html .= $previewBody;
+        }
+        echo $html;
     }
 }
 
@@ -80,8 +98,10 @@ if(isset($_REQUEST['key']) && $_REQUEST['key'] == "setcontent")
 if(isset($_REQUEST['key']) && $_REQUEST['key'] == "setpost")
     $manager->SetPost();
 
-if(isset($_GET['postid']))
+if(isset($_REQUEST['category_id']))
+    $manager->GetPosts();
+else if(isset($_REQUEST['postid']))
     $manager->GetEntries();
 else
-    $manager->GetPosts();
+    $manager->DisplayCategories();
 ?>

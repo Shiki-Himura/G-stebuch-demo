@@ -21,6 +21,11 @@
                             </div>";
             if(isset($_SESSION['valid_user']))
                 echo($user_post);
+            else
+            {
+                header("Location: login.php");
+                exit();
+            }
         ?>
     </div>
 </div>

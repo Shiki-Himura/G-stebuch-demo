@@ -1,10 +1,17 @@
 $(function(){
-    $('#current-user').css('textShadow','2px 2px 5px #000000');
+    $('#current-user').css('textShadow','2px 2px 5px #000000').css('color', '#ffffff');
     $(".navbar").css(
         {
-            background:'linear-gradient(90deg, #ddddf1 0%, #0000c4 25%, #0000c4 50%, #0000c4 75%, #ddddf1 100%',
+            background:'linear-gradient(150deg, #000000 0%, #aa0000 30%, #aa0000 65%, #000000 100%',
             color:'rgb(255, 255, 255)'
         });
+    $("#newpostbtn").css('textShadow','2px 2px 5px #000000');
+    $("#reginfo").css('textShadow','2px 2px 5px #000000', 'fontSize', '10px');
+    $("#index_login").on("mouseenter", function() {
+        $(this).removeClass("btn-outline-light").addClass("btn-outline-dark");
+    }).on("mouseleave", function() {
+        $(this).removeClass("btn-outline-dark").addClass("btn-outline-light");
+    });
 
     
     var error = $("#error_message");
@@ -30,47 +37,29 @@ $(function(){
         }
         
         // validate user registration
-        
-        // let request;
-        // request = $.ajax({
-        //     type: "POST",
-        //     url: "Logic/AccountManager.php",
-        //     data: { "key":"validate", "un":reg_user.val() },
-        //     success: function(response) {
-        //         user_available = response;
-        //         console.log(user_available);
-        //         if(user_available == false)
-        //         {
-        //             error.html("User already exists!");
-        //             return;
-        //         }
-        //     }
-        // });
-
-        let reg_request = new XMLHttpRequest();
-        reg_request.onload = function() {
-            user_available = this.responseText;
-            if(user_available == false)
-            {
-                error.html("User already exists!");
-                return;
-            }
-        };
-        reg_request.open("POST", "./Logic/AccountManager.php", false);
-        reg_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        reg_request.send("key=validate&un=" + reg_user.val());
-
-
-        let register = new XMLHttpRequest();
-        register.onload = function() {
-            if(user_available == true)
-                window.location.href = "./login.php";
-        };
-        register.open("POST", "./Logic/AccountManager.php");
-        register.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        register.send("key=execregister&un=" + reg_user.val() + "&pw=" + reg_password.val());
+        $.post("Logic/AccountManager.php",
+                { 
+                    key:"validate", 
+                    un:reg_user.val() 
+                }, function(data){
+                    user_available = data;
+                    if(user_available == false)
+                    {
+                        error.html("User already exists!");
+                        return;
+                    }
+                    else if(user_available == true)
+                    {
+                        $.post("Logic/AccountManager.php",
+                            { 
+                                key: "execregister",
+                                un: reg_user.val(),
+                                pw: reg_password.val()
+                            });
+                        window.location.href = "./login.php";
+                    }
+                });
     });
-
     
     $("#index_login").on("click", function() {
         let log_user = $("#log_un");
@@ -82,24 +71,33 @@ $(function(){
             return;
         }
         
-        let login = new XMLHttpRequest();
-        login.onload = function(){
-            user_exists = this.responseText;
-            if(user_exists == false)
-            {
-                logerror.html("Please check your Username/Password");
-                return;
-            }
-
-            if(user_exists == true)
-                window.location.href = "./index.php";
-        };
-        login.open("POST", "./Logic/AccountManager.php");
-        login.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        login.send("key=execlogin&login=user&un=" + log_user.val() + "&pw=" + log_password.val());
+        // login user
+        $.post("Logic/AccountManager.php",
+                {
+                    key: "execlogin",
+                    login: "user",
+                    un: log_user.val(),
+                    pw: log_password.val()
+                }, function(data){
+                    user_exists = data;
+                    if(user_exists == false)
+                    {
+                        logerror.html("Please check your Username/Password");
+                        return;
+                    }
+                    else if(user_exists == true)
+                        window.location.href = "index.php";
+                });
     });
 
     $("#logout_user").on("click", function() {
+        // $.post("Logic/AccountManager.php", 
+        //         {
+        //             key: "execlogout"
+        //         }, function(data){
+        //             window.location.href = "Logic/AccountManager.php";
+        //         });
+
         let logout = new XMLHttpRequest();
         logout.onload = function(){
             window.location.href = "./index.php";
@@ -133,7 +131,8 @@ $(function(){
         request.onload = function(){
             window.location.href = "index.php";
         };
-        request.open('POST', './Logic/ContentManager.php');
+        let get_urlval = window.location.href.split("?")[1];
+        request.open('POST', './Logic/ContentManager.php?' + get_urlval);
         request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         request.send("key=setpost&title=" + post_title.val() + "&description=" + post_description.val() + "&posttext=" + post_text.val());
     });

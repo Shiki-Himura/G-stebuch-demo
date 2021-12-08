@@ -22,12 +22,21 @@ class Content_Data
 
     public function CreateNewEntry()
     {
-        $id = $_SESSION['last_id'];
+        $id = -1;
+        if(isset($_SESSION['last_id']))
+            $id = $_SESSION['last_id'];
+        
         if(isset($_GET['postid']))
             $id = $_GET['postid'];
 
         $query = "INSERT INTO `content` (`Name`,`Text`,`post_ID`) VALUES ('".$_SESSION['valid_user']."','".$_REQUEST['posttext']."','".$id."')";
         $this->db->ExecuteNonQuery($query);
+    }
+
+    public function GetCategory()
+    {
+        $query = "SELECT * FROM `categories`";
+        return $this->db->Execute($query);
     }
 }
 ?>

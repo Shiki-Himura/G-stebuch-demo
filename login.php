@@ -6,9 +6,9 @@
     }
 ?>
 <div class="row justify-content-center">
-    <div class="col-4 d-flex flex-column">
+    <div class="col-4 d-flex flex-column fs-5">
         <label>Name:
-            <input class="float-end" id="log_un" type="text" placeholder="Username">
+            <input class="float-end" id="log_un" type="text" placeholder="Username" autofocus>
         </label>
         <label>Password:
             <input class="float-end" id="log_pw" type="password" placeholder="Password">
@@ -18,7 +18,7 @@
 </div>
 <div class="row justify-content-center">
     <div class="col-3 d-flex flex-column">
-        <button id="index_login" class="btn btn-success">Login</button>
+        <button id="index_login" class="btn btn-outline-light">Login</button>
     </div>
 </div>
 <?php

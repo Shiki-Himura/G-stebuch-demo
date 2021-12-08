@@ -20,11 +20,13 @@ class AccountManager
         }
         else
             echo false;
+        exit();
     }
     
     public function Logout()
     {
         session_destroy();
+        exit();
     }
 
     public function CheckAvailability()
@@ -34,13 +36,14 @@ class AccountManager
             echo true;
         else
             echo false;
-            
+        exit();
     }
     
     public function Register()
     {
         $this->account->CreateUser();
-        echo("Successfully registered!");
+        echo("Success");
+        exit();
     }
 }
 $manager = new AccountManager();
