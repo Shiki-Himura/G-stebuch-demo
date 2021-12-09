@@ -136,4 +136,8 @@ $(function(){
         request.send("key=setpost&title=" + post_title.val() + "&description=" + post_description.val() + "&posttext=" + post_text.val());
     });
 
+
+    $("#submit_update").on("click", function() {
+        // TODO: add stuff to admin update function
+    });
 });
