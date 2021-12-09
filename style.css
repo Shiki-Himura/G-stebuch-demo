@@ -1,3 +1,10 @@
+:root {
+    --m-color : #aa0000;
+    --m-color-hover : #d90000;
+    --u-profile: #ff0000;
+    --m-color-label: #ffffff;
+}
+
 *,
 *::before,
 *::after {
@@ -5,15 +12,24 @@
 }
 
 body {
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(40,40,40,0.8);
 }
 
 .row * {
     margin: 5px 0;
 }
 
+.navbar {
+    background: linear-gradient(150deg, #000000 0%, var(--m-color) 30%, var(--m-color) 65%, #000000 100%);
+    color: rgb(255, 255, 255);
+}
+
+textarea {
+    resize: vertical;
+}
+
 textarea#textarea {
-    margin: 0px 0px 0px 0px;
+    margin: 2px;
 }
 
 #submit {
@@ -22,25 +38,36 @@ textarea#textarea {
 
 #user-profile {
     text-decoration: none;
+    color: var(--u-profile);
 }
 
 #current-user {
+    text-Shadow: 2px 2px 5px #000000;
     color: #ffffff;
 }
 
 #author {
-    color:#ee0000;
+    color: var(--u-profile);
+}
+
+#newpostbtn {
+    text-Shadow: 2px 2px 5px #000000;
+}
+
+#reginfo {
+    text-shadow: 2px 2px 5px #000000;
+    font-size: 1.25rem;
 }
 
 div a {
     text-decoration: none;
-    color: #b90000;
+    color: var(--m-color);
 }
 
 label {
-    color: #000000;
+    color: var(--m-color-label);
 }
 
 [href]:hover {
-    color: #ee0000;
+    color: var(--m-color-hover);
 }

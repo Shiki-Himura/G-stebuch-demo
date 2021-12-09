@@ -2,22 +2,23 @@
     include_once("./Modules/header.php");
 ?>
 <div class="row">
-    <div class="col">
+    <div class="col-8 fs-6">
         <?php
-            $user_post = "<label>Hey ".$_SESSION['valid_user']."! Wie wärs mit einem Post?</label>
+            $user_post = "<label class='fs-3'>Hey ".$_SESSION['valid_user']."! Wie wärs mit einem neuen Post?</label>
                             <div class='row'>
-                                <label>Titel: <input  id='post-title'></input></label>
+                                <label>Titel:</label>
+                                <textarea class='text-white bg-dark' id='post-title' type='text' rows='1' cols='10' autofocus></textarea>
                             </div>
                             <div class='row'>
                                 <label>Beschreibung:</label>
-                                <textarea id='post-description' type='text' cols='80' rows='4'></textarea>
+                                <textarea class='text-white bg-dark' id='post-description' type='text' cols='20' rows='5'></textarea>
                             </div>
                             <div class='row'>
                                 <label>Beitrag verfassen:</label>
-                                <textarea id='post-text' type='text' cols='172' rows='10'></textarea>
+                                <textarea class='text-white bg-dark' id='post-text' type='text' cols='172' rows='10'></textarea>
                             </div>
                             <div>
-                                <button id='post_submit' class='btn btn-secondary'>Absenden</button>
+                                <button id='post_submit' class='btn btn-light'>Absenden</button>
                             </div>";
             if(isset($_SESSION['valid_user']))
                 echo($user_post);

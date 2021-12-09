@@ -25,7 +25,7 @@ class ContentManager
 
         for($i = 0; $i < Count($result); $i++)
         {
-            $previewBody = "<div class='card text-white bg-dark'>
+            $previewBody = "<div class='card text-light bg-dark'>
                             <div class='card-header text-muted'>".$result[$i]->Name."
                                 <div class='float-end'>".$result[$i]->Date."</div>
                             </div>
@@ -72,6 +72,11 @@ class ContentManager
         $this->content->CreateNewEntry();
     }
 
+    public function UpdateOrder()
+    {
+        $this->content->UpdateCategoryOrderID();
+    }
+
     public function DisplayCategories()
     {
         $result = $this->content->GetCategory();
@@ -79,13 +84,44 @@ class ContentManager
         
         for($i = 0; $i < Count($result); $i++)
         {
-            $previewBody = "<li class='list-group-item'>
+            $previewBody = "<li class='list-group-item list-group-item-dark border-dark'>
                                 <h3><a href='index.php?category_id=".$result[$i]->ID."'>".$result[$i]->Name."</a></h3>
                                 <div class='text-muted'>".$result[$i]->Description."</div>
                             </li>";
 
             $html .= $previewBody;
         }
+        echo $html;
+    }
+
+    public function DisplayCategoryNames()
+    {
+        $result = $this->content->GetCategory();
+        $html ="<div class='row'>
+                    <div class='col-4'>
+                    <label>Choose a Category:</label>
+                    <select class='float-end' name='categories' id='categories'>
+                    <optgroup label='Name'>";
+        
+        for($i = 0; $i < Count($result); $i++)
+        {
+            $previewBody = "<option value='".$result[$i]->Name."'>".$result[$i]->Name."</option>";
+            $html .= $previewBody;
+        }
+
+        $html .= "      </optgroup>
+                    </select>
+                    <div>
+                        <label>Category order value: </label>
+                        <input class='float-end' type'text' placeholder='Current Range = 1-10000'></input>
+                    </div>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col-4'>
+                    <button class='btn btn-light' id='submit_update'>Submit</button>
+                </div>
+            </div>";
         echo $html;
     }
 }
@@ -97,6 +133,12 @@ if(isset($_REQUEST['key']) && $_REQUEST['key'] == "setcontent")
 
 if(isset($_REQUEST['key']) && $_REQUEST['key'] == "setpost")
     $manager->SetPost();
+
+if(isset($_SESSION['valid_user']) && $_SESSION['valid_user'] == 'Admin' && isset($_REQUEST['admin']) && $_REQUEST['admin'] == 'update')
+{
+    $manager->DisplayCategoryNames();
+    exit();
+}
 
 if(isset($_REQUEST['category_id']))
     $manager->GetPosts();

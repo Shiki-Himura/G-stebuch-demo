@@ -1,25 +1,21 @@
 $(function(){
-    $('#current-user').css('textShadow','2px 2px 5px #000000').css('color', '#ffffff');
-    $(".navbar").css(
-        {
-            background:'linear-gradient(150deg, #000000 0%, #aa0000 30%, #aa0000 65%, #000000 100%',
-            color:'rgb(255, 255, 255)'
-        });
-    $("#newpostbtn").css('textShadow','2px 2px 5px #000000');
-    $("#reginfo").css('textShadow','2px 2px 5px #000000', 'fontSize', '10px');
+    var error = $("#error_message");
+    var logerror = $("#login_error");
+
     $("#index_login").on("mouseenter", function() {
         $(this).removeClass("btn-outline-light").addClass("btn-outline-dark");
     }).on("mouseleave", function() {
         $(this).removeClass("btn-outline-dark").addClass("btn-outline-light");
     });
-
+    $("#register").on("mouseenter", function() {
+        $(this).removeClass("btn-outline-light").addClass("btn-outline-dark");
+    }).on("mouseleave", function() {
+        $(this).removeClass("btn-outline-dark").addClass("btn-outline-light");
+    });
     
-    var error = $("#error_message");
-    var logerror = $("#login_error");
-    let user_available = false;
-    let user_exists = false;
-    
+    // validate and register the user
     $("#register").on("click", function(){
+        let user_available = false;
         let reg_user = $("#reg_un");
         let reg_password = $("#reg_pw");
         let reg_repeat = $("#reg_repeat_pw");
@@ -32,7 +28,7 @@ $(function(){
         
         if(reg_password.val() != reg_repeat.val())
         {
-            error.html("Passwords don´t match!");
+            error.html("Passwords don`t match!");
             return;
         }
         
@@ -61,7 +57,9 @@ $(function(){
                 });
     });
     
+    // validate and login user
     $("#index_login").on("click", function() {
+        let user_exists = false;
         let log_user = $("#log_un");
         let log_password = $("#log_pw");
         
@@ -90,6 +88,7 @@ $(function(){
                 });
     });
 
+    // logout user
     $("#logout_user").on("click", function() {
         // $.post("Logic/AccountManager.php", 
         //         {

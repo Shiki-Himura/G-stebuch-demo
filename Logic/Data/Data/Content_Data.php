@@ -35,8 +35,14 @@ class Content_Data
 
     public function GetCategory()
     {
-        $query = "SELECT * FROM `categories`";
+        $query = "SELECT * FROM `categories` ORDER BY `orderID`";
         return $this->db->Execute($query);
+    }
+
+    public function UpdateCategoryOrderID()
+    {
+        $query = "UPDATE `categories` SET `orderID`=".$_REQUEST['orderid']." WHERE `Name` = ".$_REQUEST['category_name']."";
+        return $this->db->ExecuteNonQuery($query);
     }
 }
 ?>

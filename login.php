@@ -6,7 +6,7 @@
     }
 ?>
 <div class="row justify-content-center">
-    <div class="col-4 d-flex flex-column fs-5">
+    <div class="col-4 d-flex flex-column fs-5 mt-5">
         <label>Name:
             <input class="float-end" id="log_un" type="text" placeholder="Username" autofocus>
         </label>
