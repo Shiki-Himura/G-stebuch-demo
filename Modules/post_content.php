@@ -7,4 +7,3 @@
         if(isset($_SESSION['valid_user']))
             include_once "./Modules/post_submit.php";
     ?>
-<?php include_once "./Modules/footer.php" ; ?>

@@ -110,6 +110,13 @@ $(function(){
     $("#index_submit").on('click', function(){
         // TODO: refactor click event handler to $.ajax syntax
         let post_comment = $("#post-description");
+
+        if(post_comment.val()=="")
+        {
+            alert("Please enter missing Information!");
+            return;
+        }
+
         let request = new XMLHttpRequest();
         request.onload = function(){
             $('#post-comment').html(this.responseText);
@@ -126,6 +133,12 @@ $(function(){
         let post_description = $("#post-description");
         let post_text = $("#post-text");
 
+        if(post_title.val()=="" || post_description.val()=="" || post_text.val()=="")
+        {
+            alert("Please enter missing Information!");
+            return;
+        }
+
         let request = new XMLHttpRequest();
         request.onload = function(){
             window.location.href = "index.php";
@@ -137,7 +150,18 @@ $(function(){
     });
 
 
-    $("#submit_update").on("click", function() {
+    $("#update_category_order").on("click", function(){
         // TODO: add stuff to admin update function
+        console.log("hi");
+        let categoryName = $('#categories').val();
+        let orderValue = $('#order').val();
+
+        // $.post("Logic/ContentManager.php",
+        //         {
+        //             admin: "update",
+        //             options: "changeOrder"
+        //         }).done(function() {
+        //             console.log('Done Updating!');
+        //         });
     });
 });

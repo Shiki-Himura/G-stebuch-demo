@@ -36,6 +36,10 @@ textarea#textarea {
     margin: 0 0 0 50px;
 }
 
+#submit_update {
+    background-color: var(--m-color);
+}
+
 #user-profile {
     text-decoration: none;
     color: var(--u-profile);
@@ -57,6 +61,10 @@ textarea#textarea {
 #reginfo {
     text-shadow: 2px 2px 5px #000000;
     font-size: 1.25rem;
+}
+
+#admin_redirect {
+    color: #d90000;
 }
 
 div a {

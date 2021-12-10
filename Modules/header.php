@@ -47,20 +47,7 @@
                             <li class='nav-item'>
                                 <a class='nav-link' id='logout_user' href='javascript:void(0)'>Logout</a>
                             </li>";
-                $admin =   "<li class='nav-item'>
-                                <div class='mt-2'>Willkommen
-                                    <a id='user-profile' href='#'>".$_SESSION['valid_user']."!</a>
-                                </div>
-                            </li>
-                            <li class='nav-item'>
-                                <a class='nav-link' id='logout_user' href='javascript:void(0)'>Logout</a>
-                            </li>
-                            <li class='nav-item'>
-                                <a class='nav-link' id='adminsettings' href='administration.php?admin=update'>Settings</a>
-                            </li>";
-                if(isset($_SESSION['valid_user']) && $_SESSION['valid_user'] == 'Admin')
-                    echo $admin;
-                else if(isset($_SESSION['valid_user']))
+                if(isset($_SESSION['valid_user']))
                     echo($loggedin);
                 else
                     echo($nouser);

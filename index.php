@@ -10,6 +10,18 @@
         ?>
     </div>
 </div>
+<div class="row">
+    <div class="col">
+        <?php
+            if(isset($_SESSION['valid_user']) && $_SESSION['valid_user'] == 'Admin')
+            {
+                echo("<div class='fs-6 fw-bold btn btn-outline-dark'>
+                        <a href='admin-settings.php?Administration=admin_settings' id='admin_redirect'>Change Category Order</a>
+                    </div>");
+            }
+        ?>
+    </div>
+</div>
 <div class="row" id="dbcontent">
     <?php
         if(isset($_GET['postid']))

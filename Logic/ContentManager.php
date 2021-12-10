@@ -94,14 +94,14 @@ class ContentManager
         echo $html;
     }
 
-    public function DisplayCategoryNames()
+    public function GetCategoryNames()
     {
         $result = $this->content->GetCategory();
-        $html ="<div class='row'>
-                    <div class='col-4'>
-                    <label>Choose a Category:</label>
-                    <select class='float-end' name='categories' id='categories'>
-                    <optgroup label='Name'>";
+        $html ="
+                    <div class='row'>
+                        <div class='col-4'>
+                            <label>Choose a Category:</label>
+                            <select class='float-end' name='categories' id='categories'>";
         
         for($i = 0; $i < Count($result); $i++)
         {
@@ -109,17 +109,19 @@ class ContentManager
             $html .= $previewBody;
         }
 
-        $html .= "      </optgroup>
-                    </select>
-                    <div>
-                        <label>Category order value: </label>
-                        <input class='float-end' type'text' placeholder='Current Range = 1-10000'></input>
+        $html .= "
+                        </select>
                     </div>
                 </div>
-            </div>
+                <div class='row'>
+                    <div class='col-4'>
+                        <label>Category order value: </label>
+                        <input class='float-end' id='order' type'text' placeholder='Current Range = 1-10000'></input>
+                    </div>
+                </div>
             <div class='row'>
                 <div class='col-4'>
-                    <button class='btn btn-light' id='submit_update'>Submit</button>
+                    <button class='btn btn-danger' id='update_category_order'>Submit Changes</button>
                 </div>
             </div>";
         echo $html;
@@ -134,11 +136,14 @@ if(isset($_REQUEST['key']) && $_REQUEST['key'] == "setcontent")
 if(isset($_REQUEST['key']) && $_REQUEST['key'] == "setpost")
     $manager->SetPost();
 
-if(isset($_SESSION['valid_user']) && $_SESSION['valid_user'] == 'Admin' && isset($_REQUEST['admin']) && $_REQUEST['admin'] == 'update')
+if(isset($_SESSION['valid_user']) && $_SESSION['valid_user'] == 'Admin' && isset($_REQUEST['Administration']) && $_REQUEST['Administration'] == 'admin_settings')
 {
-    $manager->DisplayCategoryNames();
+    $manager->GetCategoryNames();
     exit();
 }
+
+if(isset($_REQUEST['options']) && $_REQUEST['options'] == 'changeOrder')
+    $manager->UpdateOrder();
 
 if(isset($_REQUEST['category_id']))
     $manager->GetPosts();
