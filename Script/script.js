@@ -1,4 +1,60 @@
 $(function(){
+    tinymce.init({
+        selector: 'textarea#post-title',
+        auto_focus: 'post-title',
+        entity_encoding: 'raw',
+        skin: (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'oxide-dark' : 'oxide'),
+        content_css: (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default'),
+        height: '160',
+        menubar: false,
+        toolbar_mode: 'floating',
+        toolbar: "formatgroup",
+        toolbar_groups: {
+            formatgroup: {
+                icon: 'format',
+                tooltip: 'Formatting',
+                items: 'bold italic | formatselect | removeformat'
+            },
+        },
+    });
+
+    tinymce.init({
+        selector: 'textarea#post-description',
+        entity_encoding: 'raw',
+        skin: (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'oxide-dark' : 'oxide'),
+        content_css: (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default'),
+        height: '200',
+        menubar: false,
+        resize: true,
+        toolbar_mode: 'floating',
+        toolbar: "formatgroup",
+        toolbar_groups: {
+            formatgroup: {
+                icon: 'format',
+                tooltip: 'Formatting',
+                items: 'bold italic underline | formatselect | removeformat'
+            },
+        },
+      });  
+      tinymce.init({
+        selector: 'textarea#post-text',
+        entity_encoding: 'raw',
+        skin: (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'oxide-dark' : 'oxide'),
+        content_css: (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default'),
+        height: '400',
+        menubar: false,
+        resize: true,
+        toolbar_mode: 'floating',
+        toolbar: "formatgroup",
+        toolbar_groups: {
+          formatgroup: {
+              icon: 'format',
+              tooltip: 'Formatting',
+              items: 'bold italic underline strikethrough | forecolor backcolor | formatselect | removeformat'
+          },
+        },
+      });
+
     var error = $("#error_message");
     var logerror = $("#login_error");
 
@@ -109,9 +165,8 @@ $(function(){
 
     $("#index_submit").on('click', function(){
         // TODO: refactor click event handler to $.ajax syntax
-        let post_comment = $("#post-description");
-
-        if(post_comment.val()=="")
+        let post_comment = tinymce.get('post-description').getContent();
+        if(post_comment == "")
         {
             alert("Please enter missing Information!");
             return;
@@ -120,33 +175,36 @@ $(function(){
         let request = new XMLHttpRequest();
         request.onload = function(){
             $('#post-comment').html(this.responseText);
-            post_comment.val("");
+            tinymce.get('post-description').setContent('');
         };
         let get_urlval = window.location.href.split("?")[1];
         request.open('POST', './Logic/ContentManager.php?' + get_urlval);
         request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        request.send("key=setcontent&posttext="+post_comment.val());
+        request.send("key=setcontent&posttext="+post_comment);
     });
 
     $("#post_submit").on("click", function(){
-        let post_title = $("#post-title");
-        let post_description = $("#post-description");
-        let post_text = $("#post-text");
+        let post_title = tinymce.get("post-title").getContent();
+        let post_description = tinymce.get("post-description").getContent();
+        let post_text = tinymce.get("post-text").getContent();
 
-        if(post_title.val()=="" || post_description.val()=="" || post_text.val()=="")
+        if(post_title == "" || post_description == "" || post_text == "")
         {
             alert("Please enter missing Information!");
             return;
         }
 
-        let request = new XMLHttpRequest();
-        request.onload = function(){
-            window.location.href = "index.php";
-        };
         let get_urlval = window.location.href.split("?")[1];
-        request.open('POST', './Logic/ContentManager.php?' + get_urlval);
-        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        request.send("key=setpost&title=" + post_title.val() + "&description=" + post_description.val() + "&posttext=" + post_text.val());
+        $.post("Logic/ContentManager.php?"+get_urlval,
+                {
+                    key: "setpost",
+                    title: post_title,
+                    description: post_description,
+                    posttext: post_text,
+                    success: function(){
+                        window.location.href = "index.php";
+                    }
+                });
     });
 
 

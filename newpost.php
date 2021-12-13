@@ -7,11 +7,11 @@
             $user_post = "<label class='fs-3'>Hey ".$_SESSION['valid_user']."! Wie wärs mit einem neuen Post?</label>
                             <div class='row'>
                                 <label>Titel:</label>
-                                <textarea class='text-white bg-dark' id='post-title' type='text' rows='1' cols='10' autofocus></textarea>
+                                <textarea class='text-white bg-dark' id='post-title' type='text' rows='2' cols='10' autofocus></textarea>
                             </div>
                             <div class='row'>
                                 <label>Beschreibung:</label>
-                                <textarea class='text-white bg-dark' id='post-description' type='text' cols='20' rows='5'></textarea>
+                                <textarea class='text-white bg-dark' id='post-description' type='text' rows='5'></textarea>
                             </div>
                             <div class='row'>
                                 <label>Beitrag verfassen:</label>

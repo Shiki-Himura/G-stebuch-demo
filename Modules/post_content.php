@@ -3,7 +3,7 @@
         <?php include_once "./Logic/ContentManager.php"; ?>
     </div>
     
-    <?php 
+    <?php
         if(isset($_SESSION['valid_user']))
             include_once "./Modules/post_submit.php";
     ?>
