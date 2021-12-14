@@ -38,6 +38,11 @@ class ContentManager
         echo $html;
     }
 
+    public function GetAllEntriesAsCount()
+    {
+        $this->content->GetEntryCount();
+    }
+
     public function SetEntry()
     {
         $this->content->CreateNewEntry();

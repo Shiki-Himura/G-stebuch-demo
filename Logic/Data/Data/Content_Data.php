@@ -20,6 +20,13 @@ class Content_Data
         return $this->db->Execute($query);
     }
 
+    public function GetEntryCount()
+    {
+        // TODO: get post count from certain user
+        $query = "SELECT Count(user_ID) FROM `content` JOIN userdata ON content.user_ID WHERE content.user_ID = userdata.ID AND userdata.username = '".$_GET['username']."'";
+        return $this->db->Execute($query);
+    }
+
     public function CreateNewEntry()
     {
         $post_id = -1;
