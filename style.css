@@ -72,6 +72,26 @@ label {
     color: var(--m-color-label);
 }
 
+.profileimg {
+    height: 40px;
+    padding: 1px;
+    border: 2px solid grey;
+    border-radius: 50%;
+    background-color: white;
+}
+
+ul.dropdown-menu.dropdown-menu-dark.show {
+    border-radius: 5%;
+    border: 2px solid grey;
+}
+
+a#navbarDarkDropdownMenuLink:after {
+    content: none;
+}
+
 [href]:hover {
     color: var(--m-color-hover);
 }
+
+
+

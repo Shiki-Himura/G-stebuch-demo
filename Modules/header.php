@@ -17,7 +17,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container-fluid fs-5">
+        <div class="container fs-5">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -29,35 +29,36 @@
                     </li>
                 </ul>
             <ul class="navbar-nav mb-2 mb-lg-0" id="accessbtns">
-                <?php
-                if(!isset($_SESSION['valid_user']))
-                    $_SESSION['valid_user'] = null;
-                $nouser = "
-                            <li class='nav-item'>
-                                <a class='nav-link text-light' href='login.php'>Login</a>
-                            </li>
-                            <li class='nav-item'>
-                                <a class='nav-link' href='register.php'>Register</a>
-                            </li>";
-                $loggedin = "
-                            <li class='nav-item'>
-                                <div class='mt-2'>Willkommen
-                                    <a id='user-profile' href='#'>".$_SESSION['valid_user']."!</a>
-                                </div>
-                            </li>
-                            <li class='nav-item'>
-                                <a class='nav-link' id='logout_user' href='javascript:void(0)'>Logout</a>
-                            </li>";
-                if(isset($_SESSION['valid_user']))
-                    echo($loggedin);
-                else
-                    echo($nouser);
-                ?>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img class="profileimg" src="img/smallprofpic.png"></img>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                        <?php
+                            if(!isset($_SESSION['valid_user']))
+                                $_SESSION['valid_user'] = null;
+                            $nouser = "
+                                <li class='dropdown-item'>
+                                    <a class='nav-link text-light' href='login.php'>Login</a>
+                                </li>
+                                <li class='dropdown-item'>
+                                    <a class='nav-link' href='register.php'>Register</a>
+                                </li>";
+                            $loggedin = "
+                                <li class='dropdown-item'>
+                                    <a class='nav-link text-light' href='userprofile.php'>Profile</a>
+                                </li>
+                                <li class='dropdown-item'>
+                                    <a class='nav-link' id='logout_user' href='javascript:void(0)'>Logout</a>
+                                </li>";
+                            if(isset($_SESSION['valid_user']))
+                                echo($loggedin);
+                            else
+                                echo($nouser);
+                        ?>
+                    </ul>
+                </li>
             </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-light" type="submit">Search</button>
-            </form>
         </div>
         </div>
     </nav>

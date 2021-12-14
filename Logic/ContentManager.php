@@ -26,7 +26,7 @@ class ContentManager
         for($i = 0; $i < Count($result); $i++)
         {
             $previewBody = "<div class='card text-light bg-dark'>
-                            <div class='card-header text-muted'>".$result[$i]->Name."
+                            <div class='card-header text-muted'>".$result[$i]->username."
                                 <div class='float-end'>".$result[$i]->Date."</div>
                             </div>
                             <div class='card-body'>

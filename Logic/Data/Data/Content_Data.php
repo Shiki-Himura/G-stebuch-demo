@@ -16,20 +16,23 @@ class Content_Data
 
     public function GetAllEntriesSortByPostID()
     {
-        $query = "SELECT * FROM `content` WHERE `post_ID` = '".$_GET['postid']."'";
+        $query = "SELECT content.*,userdata.username FROM `content` JOIN userdata ON content.user_ID WHERE content.user_ID = userdata.ID AND `post_ID` = '".$_GET['postid']."' ORDER BY ID";
         return $this->db->Execute($query);
     }
 
     public function CreateNewEntry()
     {
-        $id = -1;
+        $post_id = -1;
         if(isset($_SESSION['last_id']))
-            $id = $_SESSION['last_id'];
+            $post_id = $_SESSION['last_id'];
         
         if(isset($_GET['postid']))
-            $id = $_GET['postid'];
+            $post_id = $_GET['postid'];
 
-        $query = "INSERT INTO `content` (`Name`,`Text`,`post_ID`) VALUES ('".$_SESSION['valid_user']."','".$_REQUEST['posttext']."','".$id."')";
+        $query = "SELECT `ID` FROM `userdata` WHERE `username` = '".$_SESSION['valid_user']."'";
+        $result = $this->db->Execute($query);
+        
+        $query = "INSERT INTO `content` (`Text`,`post_ID`,`user_ID`) VALUES ('".$_REQUEST['posttext']."','".$post_id."','".$result[0]->ID."')";
         $this->db->ExecuteNonQuery($query);
     }
 
