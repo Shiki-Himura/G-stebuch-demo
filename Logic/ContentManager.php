@@ -56,7 +56,7 @@ class ContentManager
                             <div class='d-flex flex-column mt-5 text-white'>
                                 <h1><u>Profile</u></h1>
                                 <div class='fs-4'>Username: ".$username."</div>
-                                <div class='fs-4'>Posts: ".$result[0]->postcount."</div>
+                                <div class='fs-4'>Posts: ".$result[$i]->postcount."</div>
                             </div>";
             $userprofile .= $previewBody;
         }
