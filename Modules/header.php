@@ -18,15 +18,13 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container fs-5">
+            <a class="navbar-brand fs-3" href="index.php">Gästebuch</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                <a class="navbar-brand fs-3" href="index.php">Gästebuch</a>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
+                    <!-- for future header navigation links -->
                 </ul>
             <ul class="navbar-nav mb-2 mb-lg-0" id="accessbtns">
                 <li class="nav-item dropdown">

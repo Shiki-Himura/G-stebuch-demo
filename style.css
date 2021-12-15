@@ -1,5 +1,5 @@
 :root {
-    --m-color : #aa0000;
+    --m-color : #8f0000;
     --m-color-hover : #d90000;
     --u-profile: #ff0000;
     --m-color-label: #ffffff;
@@ -20,7 +20,7 @@ body {
 }
 
 .navbar {
-    background: linear-gradient(150deg, #000000 0%, var(--m-color) 30%, var(--m-color) 65%, #000000 100%);
+    background: linear-gradient(167deg, #000000 0%, var(--m-color) 30%, var(--m-color) 65%, #000000 100%);
     color: rgb(255, 255, 255);
 }
 
@@ -75,17 +75,16 @@ label {
 .profileimg {
     height: 40px;
     padding: 1px;
-    border: 2px solid #000000;
+    border: 1px solid #ffffff;
     border-radius: 50%;
     background-color: white;
 }
 
 ul.dropdown-menu.dropdown-menu-dark.show {
-    border-radius: 5%;
     border: 2px solid #000000;
 }
 
-a#navbarDarkDropdownMenuLink:after {
+a#navbarDarkDropdownMenuLink:after, a#navbarDarkDropdownMenuLink:before {
     content: none;
 }
 

@@ -27,11 +27,12 @@ class ContentManager
         for($i = 0; $i < Count($result); $i++)
         {
             $previewBody = "<div class='card text-light bg-dark'>
-                            <div class='card-header text-muted'>".$result[$i]->username."
-                                <div class='float-end'>".$result[$i]->Date."</div>
-                            </div>
+                                <div class='card-header text-muted d-flex justify-content-between'>
+                                    <a class='usernamedisplay' href='userprofile.php?username=".$result[$i]->username."'>".$result[$i]->username."</a>
+                                    <div>".$result[$i]->Date."</div>
+                                </div>
                             <div class='card-body'>
-                            <p class='card-text'>".$result[$i]->Text."</p>
+                                <p class='card-text'>".$result[$i]->Text."</p>
                             </div>
                         </div>";
             $html .= $previewBody;
@@ -39,14 +40,8 @@ class ContentManager
         echo $html;
     }
 
-    public function GetAllEntriesAsCount()
+    public function GetAllEntriesAsCount($username)
     {
-        $account = new AccountManager();
-        if(!$account->ValidateAvailabilityForUserProfiles($username = $_GET['username']))
-            $username = "Invalid User!";
-        else
-            $username = $_GET['username'];
-
         $result = $this->content->GetEntryCount();
         $userprofile = "";
 
@@ -83,7 +78,9 @@ class ContentManager
                                     </div>
                                     <div class='text-muted fs-6'>".$result[$i]->Description."</div>
                                 </td>
-                                <td id='author' class='usernamedisplay'>".$result[$i]->Author."</td>
+                                <td id='author' class='usernamedisplay'>
+                                    <a href='userprofile.php?username=".$result[$i]->Author."'>".$result[$i]->Author."</a>
+                                </td>
                                 <td>".$result[$i]->Date."</td>
                             </tr>";
             $html .= $previewBody;
@@ -180,5 +177,12 @@ if(isset($_REQUEST['options']) && $_REQUEST['options'] == 'changeOrder')
 
 
 if($_SERVER['REQUEST_URI'] == "/g%C3%A4stebuch-demo/userprofile.php?username=".(isset($_GET['username']) ? $_GET['username'] : $_SESSION['valid_user'])."")
-    $manager->GetAllEntriesAsCount();
+{
+    $account = new AccountManager();
+    if(!$account->ValidateAvailabilityForUserProfiles($username = $_GET['username']))
+        $username = "Invalid User!";
+    else
+        $username = $_GET['username'];
+    $manager->GetAllEntriesAsCount($username);
+}
 ?>
