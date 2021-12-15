@@ -1,6 +1,7 @@
 <?php
-session_start();
-include __DIR__."/../../DB/Connection/DBManager.php";
+    include_once __DIR__."/../../DB/Connection/DBManager.php";
+    if(!isset($_SESSION))
+        session_start();
 class UserData_data
 {
     private $db;
@@ -29,6 +30,14 @@ class UserData_data
     public function CheckUsername()
     {
         $query = "SELECT COUNT(*) AS usercount FROM userdata WHERE `username` = '".$_REQUEST['un']."'";
+        $result = $this->db->Execute($query);
+
+        return $result;
+    }
+
+    public function CheckUsernameForUserProfile($username)
+    {
+        $query = "SELECT COUNT(*) AS usercount FROM userdata WHERE `username` = '".$username."'";
         $result = $this->db->Execute($query);
 
         return $result;

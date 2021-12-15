@@ -1,5 +1,5 @@
 <?php
-include __DIR__."/Data/Data/UserData_data.php";
+    include_once __DIR__."/Data/Data/UserData_data.php";
 class AccountManager
 {
     private $account;
@@ -29,7 +29,7 @@ class AccountManager
         exit();
     }
 
-    public function CheckAvailability()
+    public function ValidateAvailability()
     {
         $result = $this->account->CheckUsername();
         if($result[0]->usercount == 0)
@@ -37,6 +37,15 @@ class AccountManager
         else
             echo false;
         exit();
+    }
+
+    public function ValidateAvailabilityForUserProfiles($username)
+    {
+        $result = $this->account->CheckUsernameForUserProfile($username);
+        if($result[0]->usercount == 0)
+            return false;
+        else
+            return true;
     }
     
     public function Register()
@@ -47,22 +56,16 @@ class AccountManager
     }
 }
 $manager = new AccountManager();
-$key = $_REQUEST['key'];
 
-if($key == "execlogin")
-{
+if(isset($_REQUEST['key']) && $_REQUEST['key'] == "execlogin")
     $manager->Login();
-}
-if($key == "execlogout")
-{
+
+if(isset($_REQUEST['key']) && $_REQUEST['key'] == "execlogout")
     $manager->Logout();
-}
-if($key == "validate")
-{
-    $manager->CheckAvailability();
-}
-if($key == "execregister")
-{
+
+if(isset($_REQUEST['key']) && $_REQUEST['key'] == "validate")
+    $manager->ValidateAvailability();
+
+if(isset($_REQUEST['key']) && $_REQUEST['key'] == "execregister")
     $manager->Register();
-}
 ?>

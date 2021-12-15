@@ -1,6 +1,7 @@
 <?php
     include_once __DIR__."/Data/Data/Content_Data.php";
     include_once __DIR__."/Data/Data/Post_Data.php";
+    include_once __DIR__."/AccountManager.php";
 
     if(!isset($_SESSION))
     {
@@ -40,7 +41,26 @@ class ContentManager
 
     public function GetAllEntriesAsCount()
     {
-        $this->content->GetEntryCount();
+        $account = new AccountManager();
+        if(!$account->ValidateAvailabilityForUserProfiles($username = $_GET['username']))
+            $username = "Invalid User!";
+        else
+            $username = $_GET['username'];
+
+        $result = $this->content->GetEntryCount();
+        $userprofile = "";
+
+        for ($i = 0; $i < Count($result); $i++)
+        { 
+            $previewBody = "
+                            <div class='d-flex flex-column mt-5 text-white'>
+                                <h1><u>Profile</u></h1>
+                                <div class='fs-4'>Username: ".$username."</div>
+                                <div class='fs-4'>Posts: ".$result[0]->postcount."</div>
+                            </div>";
+            $userprofile .= $previewBody;
+        }
+        echo $userprofile;
     }
 
     public function SetEntry()
@@ -63,11 +83,11 @@ class ContentManager
                                     </div>
                                     <div class='text-muted fs-6'>".$result[$i]->Description."</div>
                                 </td>
-                                <td id='author'>".$result[$i]->Author."</td>
+                                <td id='author' class='usernamedisplay'>".$result[$i]->Author."</td>
                                 <td>".$result[$i]->Date."</td>
                             </tr>";
             $html .= $previewBody;
-            }
+        }
         echo $html;
     }
 
@@ -135,11 +155,19 @@ class ContentManager
 
 $manager = new ContentManager();
 
+
 if(isset($_REQUEST['key']) && $_REQUEST['key'] == "setcontent")
     $manager->SetEntry();
 
 if(isset($_REQUEST['key']) && $_REQUEST['key'] == "setpost")
     $manager->SetPost();
+
+if(isset($_REQUEST['category_id']))
+    $manager->GetPosts();
+else if(isset($_REQUEST['postid']))
+    $manager->GetEntries();
+else if (isset($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] == "/g%C3%A4stebuch-demo/index.php")
+    $manager->DisplayCategories();
 
 if(isset($_SESSION['valid_user']) && $_SESSION['valid_user'] == 'Admin' && isset($_REQUEST['Administration']) && $_REQUEST['Administration'] == 'admin_settings')
 {
@@ -150,10 +178,7 @@ if(isset($_SESSION['valid_user']) && $_SESSION['valid_user'] == 'Admin' && isset
 if(isset($_REQUEST['options']) && $_REQUEST['options'] == 'changeOrder')
     $manager->UpdateOrder();
 
-if(isset($_REQUEST['category_id']))
-    $manager->GetPosts();
-else if(isset($_REQUEST['postid']))
-    $manager->GetEntries();
-else
-    $manager->DisplayCategories();
+
+if($_SERVER['REQUEST_URI'] == "/g%C3%A4stebuch-demo/userprofile.php?username=".(isset($_GET['username']) ? $_GET['username'] : $_SESSION['valid_user'])."")
+    $manager->GetAllEntriesAsCount();
 ?>

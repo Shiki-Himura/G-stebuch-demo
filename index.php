@@ -15,7 +15,7 @@
         <?php
             if(isset($_SESSION['valid_user']) && $_SESSION['valid_user'] == 'Admin')
             {
-                echo("<div class='fs-6 fw-bold btn btn-outline-dark'>
+                echo("<div class='fs-6 fw-bold btn btn-dark'>
                         <a href='admin-settings.php?Administration=admin_settings' id='admin_redirect'>Change Category Order</a>
                     </div>");
             }

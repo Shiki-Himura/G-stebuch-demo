@@ -46,7 +46,7 @@
                                 </li>";
                             $loggedin = "
                                 <li class='dropdown-item'>
-                                    <a class='nav-link text-light' href='userprofile.php'>Profile</a>
+                                    <a class='nav-link text-light' href='userprofile.php?username=".$_SESSION['valid_user']."'>Profile</a>
                                 </li>
                                 <li class='dropdown-item'>
                                     <a class='nav-link' id='logout_user' href='javascript:void(0)'>Logout</a>

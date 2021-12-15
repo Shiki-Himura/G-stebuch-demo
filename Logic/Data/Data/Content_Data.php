@@ -22,7 +22,9 @@ class Content_Data
 
     public function GetEntryCount()
     {
-        $query = "SELECT Count(user_ID) FROM `content` JOIN userdata ON content.user_ID WHERE content.user_ID = userdata.ID AND userdata.username = '".$_GET['username']."'";
+        $username = ($_GET['username']) ? $_GET['username'] : $_SESSION['valid_user'];
+        
+        $query = "SELECT Count(user_ID) AS postcount FROM `content` JOIN userdata ON content.user_ID WHERE content.user_ID = userdata.ID AND userdata.username = '".$username."'";
         return $this->db->Execute($query);
     }
 

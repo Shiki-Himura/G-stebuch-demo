@@ -46,8 +46,8 @@ body {
     color: #ffffff;
 }
 
-#author {
-    color: var(--u-profile);
+.usernamedisplay {
+    color: var(--u-profile)!important;
 }
 
 #newpostbtn {
@@ -60,7 +60,7 @@ body {
 }
 
 #admin_redirect {
-    color: #d90000;
+    color: var(--m-color);
 }
 
 div a {
