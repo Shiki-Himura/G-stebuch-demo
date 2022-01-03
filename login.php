@@ -7,12 +7,16 @@
 ?>
 <div class="row justify-content-center">
     <div class="col-4 d-flex flex-column fs-5 mt-5">
-        <label>Name:
-            <input class="float-end" id="log_un" type="text" placeholder="Username" autofocus>
-        </label>
-        <label>Password:
-            <input class="float-end" id="log_pw" type="password" placeholder="Password">
-        </label>
+        <div id="login_form_name">
+            <label>Name:
+                <input class="float-end" id="log_un" type="text" placeholder="Username" autofocus>
+            </label>
+        </div>
+        <div id="login_form_pw">
+            <label>Password:
+                <input class="float-end" id="log_pw" type="password" placeholder="Password">
+            </label>
+        </div>
         <div class="fs-6 text-danger" id="login_error"></div>
     </div>
 </div>

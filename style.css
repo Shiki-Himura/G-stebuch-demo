@@ -35,6 +35,18 @@ body {
     color: var(--m-color-hover);
 }
 
+#login_form_name,#login_form_pw {
+    display: flex;
+    flex-flow: column;
+    margin-bottom: 10px;
+}
+
+#register_form_name,#register_form_pw,#register_form_repeat {
+    display: flex;
+    flex-flow: column;
+    margin-bottom: 10px;
+}
+
 #submit {
     margin: 0 0 0 50px;
 }
@@ -100,8 +112,6 @@ div#current-user {
     text-align: center;
     margin: 2rem 0 0 0;
 }
-
-
 
 div a {
     text-decoration: none;
