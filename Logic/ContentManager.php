@@ -26,15 +26,15 @@ class ContentManager
 
         for($i = 0; $i < Count($result); $i++)
         {
-            $previewBody = "<div class='card text-light bg-dark'>
+            $previewBody = "<div class='card text-light bg-dark mb-2'>
                                 <div class='card-header text-muted d-flex justify-content-between'>
                                     <a class='usernamedisplay' href='userprofile.php?username=".$result[$i]->username."'>".$result[$i]->username."</a>
                                     <div>".$result[$i]->Date."</div>
                                 </div>
-                            <div class='card-body'>
-                                <div class='card-text'>".$result[$i]->Text."</div>
-                            </div>
-                        </div>";
+                                <div class='card-body'>
+                                    <div class='card-text'>".$result[$i]->Text."</div>
+                                </div>
+                            </div>";
             $html .= $previewBody;
         }
         echo $html;
@@ -48,8 +48,7 @@ class ContentManager
         for ($i = 0; $i < Count($result); $i++)
         {
             // implement display of all user posts when you click the count on their profile
-            $previewBody = "
-                            <div class='d-flex flex-column mt-5 text-white'>
+            $previewBody = "<div class='d-flex flex-column mt-5 text-white'>
                                 <h1><u>Profile</u></h1>
                                 <div class='fs-4'>Username: ".$username."</div>
                                 <div class='fs-4'>Posts: <a href='#'>".$result[$i]->postcount."</a></div>
@@ -57,6 +56,27 @@ class ContentManager
             $userprofile .= $previewBody;
         }
         echo $userprofile;
+    }
+
+    public function GetAllEntriesFromProfile()
+    {
+        $result = $this->content->GetProfileEntries();
+        $profile_entry = "";
+
+        for($i = 0; $i < Count($result); $i++)
+        {
+            $previewBody = "<div class='card text-light bg-dark mb-2'>
+                                <div class='card-header text-muted d-flex justify-content-between'>
+                                    <div class='usernamedisplay'>".$result[$i]->username."</div>
+                                    <div>".$result[$i]->Date."</div>
+                                </div>
+                                <div class='card-body'>
+                                    <div class='card-text'>".$result[$i]->Text."</div>
+                                </div>
+                            </div>";
+            $profile_entry .= $previewBody;
+        }
+        echo $profile_entry;
     }
 
     public function SetEntry()
@@ -195,5 +215,6 @@ if($_SERVER['REQUEST_URI'] == "/g%C3%A4stebuch-demo/userprofile.php?username=".(
     else
         $username = $_GET['username'];
     $manager->GetAllEntriesAsCount($username);
+    $manager->GetAllEntriesFromProfile();
 }
 ?>

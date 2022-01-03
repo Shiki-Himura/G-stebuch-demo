@@ -86,6 +86,11 @@ body {
     
 }
 
+#index_submit {
+    width: fit-content;
+    align-self: flex-end;
+}
+
 td#author {
     vertical-align: middle;
     text-align: start;

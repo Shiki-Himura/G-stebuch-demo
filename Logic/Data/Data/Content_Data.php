@@ -28,6 +28,14 @@ class Content_Data
         return $this->db->Execute($query);
     }
 
+    public function GetProfileEntries()
+    {
+        $username = ($_GET['username']) ? $_GET['username'] : $_SESSION['valid_user'];
+        
+        $query = "SELECT content.Text AS Text, content.Date AS Date, userdata.username AS username FROM `content` JOIN userdata ON content.user_ID WHERE content.user_ID = userdata.ID AND userdata.username = '".$username."'";
+        return $this->db->Execute($query);
+    }
+
     public function CreateNewEntry()
     {
         $post_id = -1;
