@@ -1,8 +1,9 @@
 :root {
-    --m-color : #8f0000;
+    --m-color : #a70000;
     --m-color-hover : #d90000;
     --u-profile: #ff0000;
     --m-color-label: #ffffff;
+    --m-color-category: #2c3034;
 }
 
 *,
@@ -12,20 +13,26 @@
 }
 
 body {
-    background-color: rgba(40,40,40,0.8);
-}
-
-.row * {
-    margin: 5px 0;
+    background-color: rgb(20,20,20);
 }
 
 .navbar {
-    background: linear-gradient(167deg, #000000 0%, var(--m-color) 30%, var(--m-color) 65%, #000000 100%);
+    background: linear-gradient(172deg, #000000 0%, var(--m-color) 30%, #780000 45%, var(--m-color) 65%, #000000 100%);
     color: rgb(255, 255, 255);
 }
 
 .tox.tox-tinymce {
     padding: 0;
+}
+
+.usernamedisplay {
+    color: var(--u-profile)!important;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.post_topic {
+    color: var(--m-color-hover);
 }
 
 #submit {
@@ -46,12 +53,9 @@ body {
     color: #ffffff;
 }
 
-.usernamedisplay {
-    color: var(--u-profile)!important;
-}
-
 #newpostbtn {
     text-Shadow: 2px 2px 5px #000000;
+    margin-bottom: -0.25rem;
 }
 
 #reginfo {
@@ -63,8 +67,40 @@ body {
     color: var(--m-color);
 }
 
+#dbcontent {
+    margin: 5rem 0 0 0;
+}
+
+#dbcontent>.col>.row {
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#th-date {
+    text-align: end;
+}
+
+#date {
+    vertical-align: middle;
+    text-align: end;
+    
+}
+
+td#author {
+    vertical-align: middle;
+    text-align: start;
+}
+
+div#current-user {
+    text-align: center;
+    margin: 2rem 0 0 0;
+}
+
+
+
 div a {
     text-decoration: none;
+    text-shadow: 0px 1px 1px #000000;
     color: var(--m-color);
 }
 
@@ -82,6 +118,25 @@ label {
 
 ul.dropdown-menu.dropdown-menu-dark.show {
     border: 2px solid #000000;
+}
+
+/* ul.list.d-flex.flex-row {
+    border: 4px outset darkred;
+} */
+
+li.nav-item.dropstart {
+    margin-left: auto;
+}
+
+li.list-group-item.list-group-item-dark.border-dark {
+    border: none;
+    border-left: 2px solid #a70000!important;
+    border-radius: 10px;
+    background: var(--m-color-category);
+}
+
+li.list-group-item {
+    margin: 0 0 1rem 0;
 }
 
 a#navbarDarkDropdownMenuLink:after, a#navbarDarkDropdownMenuLink:before {

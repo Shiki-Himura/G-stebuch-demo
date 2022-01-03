@@ -18,20 +18,20 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container fs-5">
-            <a class="navbar-brand fs-3" href="index.php">Gästebuch</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand fs-2" href="index.php">Forum</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler01" aria-controls="navbarToggler01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <div class="collapse navbar-collapse" id="navbarToggler01">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <!-- for future header navigation links -->
                 </ul>
-            <ul class="navbar-nav mb-2 mb-lg-0" id="accessbtns">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <ul class="navbar-nav mb-2 mb-lg-0" id="accessbtns">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img class="profileimg" src="img/smallprofpic.png"></img>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                        </a>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-end dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                         <?php
                             if(!isset($_SESSION['valid_user']))
                                 $_SESSION['valid_user'] = null;
@@ -55,9 +55,9 @@
                                 echo($nouser);
                         ?>
                     </ul>
-                </li>
-            </ul>
-        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
     <div class="container">

@@ -207,6 +207,53 @@ $(function(){
                 });
     });
 
+    $("th").on("click", function() {
+        let rows, switching, shouldSwitch, switchcount = 0;
+        let table = $('#post-table').html();
+        let dir = "asc";
+        switching = true;
+
+        while (switching)
+        {
+          switching = false;
+          for (let i = 1; i < table.length; i++)
+          {
+            shouldSwitch = false;
+            let x = rows[i].getElementsByTagName("td")[n];
+            let y = rows[i + 1].getElementsByTagName("td")[n];
+            if (dir == "asc")
+            {
+              if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase())
+              {
+                shouldSwitch = true;
+                break;
+              }
+            }
+            else if (dir == "desc")
+            {
+              if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase())
+              {
+                shouldSwitch = true;
+                break;
+              }
+            }
+          }
+          if (shouldSwitch) 
+          {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            switchcount ++;
+          } 
+          else
+          {
+            if (switchcount == 0 && dir == "asc")
+            {
+              dir = "desc";
+              switching = true;
+            }
+          }
+        }
+    });
 
     $("#update_category_order").on("click", function(){
         // TODO: add stuff to admin update function

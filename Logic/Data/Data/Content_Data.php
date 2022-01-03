@@ -40,7 +40,7 @@ class Content_Data
         $query = "SELECT `ID` FROM `userdata` WHERE `username` = '".$_SESSION['valid_user']."'";
         $result = $this->db->Execute($query);
         
-        $query = "INSERT INTO `content` (`Text`,`post_ID`,`user_ID`) VALUES ('".$_REQUEST['posttext']."','".$post_id."','".$result[0]->ID."')";
+        $query = "INSERT INTO `content` (`Text`,`post_ID`,`user_ID`) VALUES ('".$_REQUEST['posttext']."',".$post_id.",".$result[0]->ID.")";
         $this->db->ExecuteNonQuery($query);
     }
 

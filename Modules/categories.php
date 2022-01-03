@@ -1,3 +1,3 @@
-<ul class="list-group">
+<div class="row">
     <?php include_once "Logic/ContentManager.php" ?>
-</ul>
+</div>

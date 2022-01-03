@@ -32,7 +32,7 @@ class ContentManager
                                     <div>".$result[$i]->Date."</div>
                                 </div>
                             <div class='card-body'>
-                                <p class='card-text'>".$result[$i]->Text."</p>
+                                <div class='card-text'>".$result[$i]->Text."</div>
                             </div>
                         </div>";
             $html .= $previewBody;
@@ -46,12 +46,13 @@ class ContentManager
         $userprofile = "";
 
         for ($i = 0; $i < Count($result); $i++)
-        { 
+        {
+            // implement display of all user posts when you click the count on their profile
             $previewBody = "
                             <div class='d-flex flex-column mt-5 text-white'>
                                 <h1><u>Profile</u></h1>
                                 <div class='fs-4'>Username: ".$username."</div>
-                                <div class='fs-4'>Posts: ".$result[$i]->postcount."</div>
+                                <div class='fs-4'>Posts: <a href='#'>".$result[$i]->postcount."</a></div>
                             </div>";
             $userprofile .= $previewBody;
         }
@@ -74,15 +75,22 @@ class ContentManager
             $previewBody = "<tr>
                                 <td>
                                     <div>
-                                        <a class='fs-4' href='index.php?postid=".$result[$i]->ID."'>".$result[$i]->Title."</a>
+                                        <a class='fs-4 post_topic' href='index.php?postid=".$result[$i]->ID."'>".$result[$i]->Topic."</a>
                                     </div>
                                     <div class='text-muted fs-6'>".$result[$i]->Description."</div>
                                 </td>
                                 <td id='author' class='usernamedisplay'>
-                                    <a href='userprofile.php?username=".$result[$i]->Author."'>".$result[$i]->Author."</a>
+                                    <div>
+                                        <a href='userprofile.php?username=".$result[$i]->Author."'>".$result[$i]->Author."</a>
+                                    </div>
                                 </td>
-                                <td>".$result[$i]->Date."</td>
+                                <td id='date'>
+                                    <div>
+                                        ".$result[$i]->Date."
+                                    </div>    
+                                </td>
                             </tr>";
+            $previewBody = str_replace(['<p>','</p>'], '', $previewBody);
             $html .= $previewBody;
         }
         echo $html;
@@ -106,10 +114,13 @@ class ContentManager
         
         for($i = 0; $i < Count($result); $i++)
         {
-            $previewBody = "<li class='list-group-item list-group-item-dark border-dark'>
-                                <h3><a href='index.php?category_id=".$result[$i]->ID."'>".$result[$i]->Name."</a></h3>
-                                <div class='text-muted'>".$result[$i]->Description."</div>
-                            </li>";
+            $previewBody = "
+                                <li class='list-group-item list-group-item-dark col-5 border-dark'>
+                                    <h3><a href='index.php?category_id=".$result[$i]->ID."'>".$result[$i]->Name."</a></h3>
+                                    <div class='text-muted'>".$result[$i]->Description."</div>
+                                </li>
+                            
+                            ";
 
             $html .= $previewBody;
         }
