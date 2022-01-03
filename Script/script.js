@@ -69,8 +69,8 @@ $(function(){
         $(this).removeClass("btn-light").addClass("btn-outline-light");
     });
     
-    // validate and register the user
-    $("#register").on("click", function(){
+    function RegisterHandler()
+    {
         let user_available = false;
         let reg_user = $("#reg_un");
         let reg_password = $("#reg_pw");
@@ -111,10 +111,23 @@ $(function(){
                         window.location.href = "./login.php";
                     }
                 });
+    }
+
+    // validate and register the user
+    $("#register").on("click", function(){
+        RegisterHandler();
+    });
+
+    $("#reg_repeat_pw,#reg_pw").on("keydown", function(e) {
+        if(e.which == 13)
+        {
+            RegisterHandler();
+            return false;
+        }
     });
     
-    // validate and login user
-    $("#index_login").on("click", function() {
+    function LoginHandler()
+    {
         let user_exists = false;
         let log_user = $("#log_un");
         let log_password = $("#log_pw");
@@ -142,6 +155,18 @@ $(function(){
                     else if(user_exists == true)
                         window.location.href = "index.php";
                 });
+    }
+
+    // validate and login user
+    $("#index_login").on("click", function() {
+        LoginHandler();
+    });
+
+    $("#log_pw,#log_un").on("keydown", function(e) {
+        if (e.which == 13) {
+            LoginHandler();
+            return false;    //<---- Add this line
+        }
     });
 
     // logout user
