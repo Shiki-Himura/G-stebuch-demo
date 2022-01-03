@@ -165,7 +165,7 @@ $(function(){
     $("#log_pw,#log_un").on("keydown", function(e) {
         if (e.which == 13) {
             LoginHandler();
-            return false;    //<---- Add this line
+            return false;
         }
     });
 
