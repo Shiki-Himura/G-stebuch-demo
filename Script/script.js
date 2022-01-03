@@ -207,52 +207,23 @@ $(function(){
                 });
     });
 
-    $("th").on("click", function() {
-        let rows, switching, shouldSwitch, switchcount = 0;
-        let table = $('#post-table').html();
-        let dir = "asc";
-        switching = true;
-
-        while (switching)
-        {
-          switching = false;
-          for (let i = 1; i < table.length; i++)
-          {
-            shouldSwitch = false;
-            let x = rows[i].getElementsByTagName("td")[n];
-            let y = rows[i + 1].getElementsByTagName("td")[n];
-            if (dir == "asc")
+    var dir = "desc";
+    $("th").on("click", function(){
+        let table = $('#post-table');
+        let tbody = $('#posts');
+        
+        tbody.find('tr').sort(function(a, b){
+            if(dir == "asc")
             {
-              if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase())
-              {
-                shouldSwitch = true;
-                break;
-              }
+                dir = "desc";
+                return $('td:first', a).html().localeCompare($('td:first', b).html());
             }
-            else if (dir == "desc")
+            else
             {
-              if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase())
-              {
-                shouldSwitch = true;
-                break;
-              }
+                dir = "asc";
+                return $('td:first', b).html().localeCompare($('td:first', a).html());
             }
-          }
-          if (shouldSwitch) 
-          {
-            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-            switching = true;
-            switchcount ++;
-          } 
-          else
-          {
-            if (switchcount == 0 && dir == "asc")
-            {
-              dir = "desc";
-              switching = true;
-            }
-          }
-        }
+        }).appendTo(tbody);
     });
 
     $("#update_category_order").on("click", function(){
