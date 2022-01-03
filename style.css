@@ -157,7 +157,6 @@ li.list-group-item {
     margin: 0 0 1rem 0;
 }
 
-
 a#navbarDarkDropdownMenuLink:after, a#navbarDarkDropdownMenuLink:before {
     content: none;
 }
@@ -172,6 +171,9 @@ li.dropdown-item {
     border-left: 4px solid #a70000!important;
     border-radius: 10px;
     background: var(--m-color-category);
+}
+li.dropdown-item a{
+    font-size: 1.15rem;
 }
 
 .dropdown-menu[data-bs-popper] {

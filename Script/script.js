@@ -234,12 +234,12 @@ $(function(){
             if(dir == "asc")
             {
                 dir = "desc";
-                return $('td:first', a).html().localeCompare($('td:first', b).html());
+                return $('td:first', a).text().localeCompare($('td:first', b).text());
             }
             else
             {
                 dir = "asc";
-                return $('td:first', b).html().localeCompare($('td:first', a).html());
+                return $('td:first', b).text().localeCompare($('td:first', a).text());
             }
         }).appendTo(tbody);
     });
