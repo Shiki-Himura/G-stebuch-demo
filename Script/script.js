@@ -171,20 +171,13 @@ $(function(){
 
     // logout user
     $("#logout_user").on("click", function() {
-        // $.post("Logic/AccountManager.php", 
-        //         {
-        //             key: "execlogout"
-        //         }, function(data){
-        //             window.location.href = "Logic/AccountManager.php";
-        //         });
-
-        let logout = new XMLHttpRequest();
-        logout.onload = function(){
-            window.location.href = "./index.php";
-        };
-        logout.open("POST", "./Logic/AccountManager.php");
-        logout.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        logout.send("key=execlogout");
+        $.post("Logic/AccountManager.php", 
+                {
+                    key: "execlogout",
+                    success: function(){
+                        window.location.href = "./index.php";
+                    }
+                });
     });
 
 
