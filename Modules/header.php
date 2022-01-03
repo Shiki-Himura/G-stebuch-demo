@@ -37,17 +37,17 @@
                                 $_SESSION['valid_user'] = null;
                             $nouser = "
                                 <li class='dropdown-item'>
-                                    <a class='nav-link text-light' href='login.php'>Login</a>
+                                    <a class='nav-link' href='login.php'>Sign In</a>
                                 </li>
                                 <li class='dropdown-item'>
                                     <a class='nav-link' href='register.php'>Register</a>
                                 </li>";
                             $loggedin = "
                                 <li class='dropdown-item'>
-                                    <a class='nav-link text-light' href='userprofile.php?username=".$_SESSION['valid_user']."'>Profile</a>
+                                    <a class='nav-link' href='userprofile.php?username=".$_SESSION['valid_user']."'>Profile</a>
                                 </li>
                                 <li class='dropdown-item'>
-                                    <a class='nav-link' id='logout_user' href='javascript:void(0)'>Logout</a>
+                                    <a class='nav-link' id='logout_user' href='javascript:void(0)'>Sign Out</a>
                                 </li>";
                             if(isset($_SESSION['valid_user']))
                                 echo($loggedin);

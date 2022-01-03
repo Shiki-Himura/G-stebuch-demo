@@ -41,6 +41,13 @@ body {
     margin-bottom: 10px;
 }
 
+#logout_user {
+    color: var(--m-color);
+}
+#logout_user:hover {
+    color: var(--m-color-hover);
+}
+
 #register_form_name,#register_form_pw,#register_form_repeat {
     display: flex;
     flex-flow: column;
@@ -131,10 +138,6 @@ label {
     background-color: white;
 }
 
-ul.dropdown-menu.dropdown-menu-dark.show {
-    border: 2px solid #000000;
-}
-
 /* ul.list.d-flex.flex-row {
     border: 4px outset darkred;
 } */
@@ -154,6 +157,7 @@ li.list-group-item {
     margin: 0 0 1rem 0;
 }
 
+
 a#navbarDarkDropdownMenuLink:after, a#navbarDarkDropdownMenuLink:before {
     content: none;
 }
@@ -162,5 +166,19 @@ a#navbarDarkDropdownMenuLink:after, a#navbarDarkDropdownMenuLink:before {
     color: var(--m-color-hover);
 }
 
+/* Bootstrap dropdown override */
+li.dropdown-item {
+    border: none;
+    border-left: 4px solid #a70000!important;
+    border-radius: 10px;
+    background: var(--m-color-category);
+}
 
+.dropdown-menu[data-bs-popper] {
+    margin-top: 0px;
+}
 
+ul.dropdown-menu.dropdown-menu-end.dropdown-menu-lg-end.dropdown-menu-dark.show {
+    background: transparent;
+    border: none;
+}
