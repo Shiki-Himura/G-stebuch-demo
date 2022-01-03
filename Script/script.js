@@ -59,14 +59,14 @@ $(function(){
     var logerror = $("#login_error");
 
     $("#index_login").on("mouseenter", function() {
-        $(this).removeClass("btn-outline-light").addClass("btn-outline-dark");
+        $(this).removeClass("btn-outline-light").addClass("btn-light");
     }).on("mouseleave", function() {
-        $(this).removeClass("btn-outline-dark").addClass("btn-outline-light");
+        $(this).removeClass("btn-light").addClass("btn-outline-light");
     });
     $("#register").on("mouseenter", function() {
-        $(this).removeClass("btn-outline-light").addClass("btn-outline-dark");
+        $(this).removeClass("btn-outline-light").addClass("btn-light");
     }).on("mouseleave", function() {
-        $(this).removeClass("btn-outline-dark").addClass("btn-outline-light");
+        $(this).removeClass("btn-light").addClass("btn-outline-light");
     });
     
     // validate and register the user

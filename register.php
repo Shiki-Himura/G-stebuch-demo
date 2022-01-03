@@ -2,8 +2,8 @@
     include_once("./Modules/header.php");
 ?>
 <div class="row justify-content-center">
-    <div class="col-4 d-flex flex-column fs-5">
-        <label id="reginfo" class="fst-italic text-danger">Please enter the required Information*</label>
+    <div class="col-4 d-flex flex-column fs-5 mt-5">
+        <label id="reginfo" class="fst-italic text-danger fs-6">*Please enter the required Information</label>
         <label>*Name:
             <input class="float-end" id="reg_un" placeholder="Username" autofocus/>
         </label>

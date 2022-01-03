@@ -134,13 +134,10 @@ class ContentManager
         
         for($i = 0; $i < Count($result); $i++)
         {
-            $previewBody = "
-                                <li class='list-group-item list-group-item-dark col-5 border-dark'>
-                                    <h3><a href='index.php?category_id=".$result[$i]->ID."'>".$result[$i]->Name."</a></h3>
-                                    <div class='text-muted'>".$result[$i]->Description."</div>
-                                </li>
-                            
-                            ";
+            $previewBody = "<li class='list-group-item list-group-item-dark col-5 border-dark'>
+                                <h3><a href='index.php?category_id=".$result[$i]->ID."'>".$result[$i]->Name."</a></h3>
+                                <div class='text-muted'>".$result[$i]->Description."</div>
+                            </li>";
 
             $html .= $previewBody;
         }
