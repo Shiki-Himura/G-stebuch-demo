@@ -8,7 +8,9 @@
             if(isset($_SESSION['valid_user']))
                 echo($user_entry);
             else
-                echo "<div id='current-user' class='fs-1'>Welcome to the Forum Guest!</div>";
+                echo "<div id='current-user' class='fs-3'>
+                        Welcome to the Forum Guest! If you want to engage in a discussion please Sign in
+                      </div>";
         ?>
     </div>
 </div>
