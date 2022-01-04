@@ -13,6 +13,7 @@ class AccountManager
     public function Login()
     {
         $result = $this->account->ValidateUser();
+        
         if($result[0]->usercount == 1)
         {
             $_SESSION['valid_user'] = $_REQUEST['un'];
@@ -25,6 +26,15 @@ class AccountManager
     
     public function Logout()
     {
+        $_SESSION = array();
+        if (ini_get("session.use_cookies"))
+        {
+            $params = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 42000,
+                $params["path"], $params["domain"],
+                $params["secure"], $params["httponly"]
+            );
+        }
         session_destroy();
         exit();
     }

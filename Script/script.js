@@ -103,7 +103,7 @@ $(function(){
                     else if(user_available == true)
                     {
                         $.post("Logic/AccountManager.php",
-                            { 
+                            {
                                 key: "execregister",
                                 un: reg_user.val(),
                                 pw: reg_password.val()

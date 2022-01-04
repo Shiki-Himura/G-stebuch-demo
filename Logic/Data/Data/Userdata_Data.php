@@ -20,10 +20,17 @@ class UserData_data
         }
         if(isset($_REQUEST['key']))
         {
-            $query = "SELECT COUNT(*) AS usercount FROM userdata WHERE `username` = '".$_REQUEST['un']."' AND `password` = '".$_REQUEST['pw']."'";
+            $password = $_REQUEST['pw'];
+            $query = "SELECT password FROM userdata WHERE `username` = '".$_REQUEST['un']."'";
             $result = $this->db->Execute($query);
             
-            return $result;
+            if(password_verify($password, $result[0]->password))
+            {
+                $query = "SELECT COUNT(*) AS usercount FROM userdata WHERE `username` = '".$_REQUEST['un']."' AND `password` = '".$result[0]->password."'";
+                $result = $this->db->Execute($query);
+                
+                return $result;
+            }
         }
     }
 
@@ -52,8 +59,12 @@ class UserData_data
         }
         if(isset($_REQUEST["key"]))
         {
-            $query = "INSERT INTO userdata (`username`, `password`) VALUES ('".$_REQUEST['un']."','".$_REQUEST['pw']."')";
+            $password = $_REQUEST['pw'];
+            $hashed_pw = password_hash($password, PASSWORD_DEFAULT);
+
+            $query = "INSERT INTO userdata (`username`, `password`) VALUES ('".$_REQUEST['un']."','".$hashed_pw."')";
             $this->db->Execute($query);
+
         }
     }
 }

@@ -210,7 +210,7 @@ if($_SERVER['REQUEST_URI'] == "/g%C3%A4stebuch-demo/userprofile.php?username=".(
     if(!$account->ValidateAvailabilityForUserProfiles($username = $_GET['username']))
         $username = "Invalid User!";
     else
-        $username = $_GET['username'];
+        $username = ucwords($_GET['username']);
     $manager->GetAllEntriesAsCount($username);
     $manager->GetAllEntriesFromProfile();
 }
