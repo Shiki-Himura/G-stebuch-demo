@@ -184,3 +184,8 @@ ul.dropdown-menu.dropdown-menu-end.dropdown-menu-lg-end.dropdown-menu-dark.show 
     background: transparent;
     border: none;
 }
+
+.dropdown-menu-dark .dropdown-item.active, .dropdown-menu-dark .dropdown-item:active {
+    color: #fff;
+    background-color: var(--m-color-category);
+}
