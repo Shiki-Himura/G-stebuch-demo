@@ -1,9 +1,7 @@
 <?php
     include_once("./Modules/header.php");
     if(!isset($_SESSION))
-    {
         session_start();
-    }
 ?>
 <div class="row justify-content-center">
     <div class="col-4 d-flex flex-column fs-5 mt-5">
