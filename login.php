@@ -21,7 +21,7 @@
     </div>
 </div>
 <div class="row justify-content-center">
-    <div class="col-3 d-flex flex-column">
+    <div class="col-3 d-flex flex-column mt-4">
         <button id="index_login" class="btn btn-outline-light">Login</button>
     </div>
 </div>

@@ -250,19 +250,4 @@ $(function(){
             }
         }).appendTo(tbody);
     });
-
-    $("#update_category_order").on("click", function(){
-        // TODO: add stuff to admin update function
-        console.log("hi");
-        let categoryName = $('#categories').val();
-        let orderValue = $('#order').val();
-
-        // $.post("Logic/ContentManager.php",
-        //         {
-        //             admin: "update",
-        //             options: "changeOrder"
-        //         }).done(function() {
-        //             console.log('Done Updating!');
-        //         });
-    });
 });

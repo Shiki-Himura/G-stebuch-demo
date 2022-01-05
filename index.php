@@ -9,7 +9,7 @@
                 echo($user_entry);
             else
                 echo "<div id='current-user' class='fs-3'>
-                        Welcome to the Forum Guest! If you want to engage in a discussion please Sign in
+                        Welcome to the Forum Guest!
                       </div>";
         ?>
     </div>

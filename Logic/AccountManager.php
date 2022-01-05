@@ -14,7 +14,7 @@ class AccountManager
     {
         $result = $this->account->ValidateUser();
         
-        if($result[0]->usercount == 1)
+        if($result != false && $result[0]->usercount == 1)
         {
             $_SESSION['valid_user'] = $_REQUEST['un'];
             echo true;

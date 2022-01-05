@@ -24,13 +24,15 @@ class UserData_data
             $query = "SELECT password FROM userdata WHERE `username` = '".$_REQUEST['un']."'";
             $result = $this->db->Execute($query);
             
-            if(password_verify($password, $result[0]->password))
+            if(Count($result) != 0 && password_verify($password, $result[0]->password))
             {
                 $query = "SELECT COUNT(*) AS usercount FROM userdata WHERE `username` = '".$_REQUEST['un']."' AND `password` = '".$result[0]->password."'";
                 $result = $this->db->Execute($query);
                 
                 return $result;
             }
+            else
+                return false;
         }
     }
 
