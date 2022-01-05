@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col">
         <?php
-            $user_entry = "<div id='current-user' class='fs-1'>Welcome ".$_SESSION['valid_user']."!</div>";
+            $user_entry = "<div id='current-user' class='fs-1'>Welcome ".ucwords($_SESSION['valid_user'])."!</div>";
             if(isset($_SESSION['valid_user']))
                 echo($user_entry);
             else

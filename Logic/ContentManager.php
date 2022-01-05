@@ -101,13 +101,13 @@ class ContentManager
                                 </td>
                                 <td id='author' class='usernamedisplay'>
                                     <div>
-                                        <a href='userprofile.php?username=".$result[$i]->Author."'>".$result[$i]->Author."</a>
+                                        <a href='userprofile.php?username=".$result[$i]->Author."'>".ucwords($result[$i]->Author)."</a>
                                     </div>
                                 </td>
                                 <td id='date'>
                                     <div>
                                         ".$result[$i]->Date."
-                                    </div>    
+                                    </div>
                                 </td>
                             </tr>";
             $previewBody = str_replace(['<p>','</p>'], '', $previewBody);
