@@ -1,60 +1,31 @@
 $(function(){
 
-    tinymce.init({
-        selector: 'textarea#post-title',
-        auto_focus: 'post-title',
-        entity_encoding: 'raw',
-        skin: (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'oxide-dark' : 'oxide'),
-        content_css: (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default'),
-        height: '160',
-        menubar: false,
-        toolbar_mode: 'floating',
-        toolbar: "formatgroup",
-        toolbar_groups: {
-            formatgroup: {
-                icon: 'format',
-                tooltip: 'Formatting',
-                items: 'bold italic | formatselect | removeformat'
-            },
+    $(".profile_link").on({
+        click: function(link) {
+            $temp = $(".profile_link").find(".profile_active_link");
+            $temp.removeClass("profile_active_link");
+            $(link.target).addClass("profile_active_link");
         },
+        mouseenter: function(link) {
+            $(link.target).addClass("profile_link_hover").css("cursor", "pointer");
+        },
+        mouseleave: function(link) {
+            $(link.target).removeClass("profile_link_hover");
+        }
     });
 
     tinymce.init({
-        selector: 'textarea#post-description',
-        entity_encoding: 'raw',
-        skin: (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'oxide-dark' : 'oxide'),
-        content_css: (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default'),
-        height: '200',
-        menubar: false,
-        resize: true,
-        toolbar_mode: 'floating',
-        toolbar: "formatgroup",
-        toolbar_groups: {
-            formatgroup: {
-                icon: 'format',
-                tooltip: 'Formatting',
-                items: 'bold italic underline | formatselect | removeformat'
-            },
-        },
-      });  
-      tinymce.init({
         selector: 'textarea#post-text',
         entity_encoding: 'raw',
+        plugins: 'quickbars table image link lists media help',
         skin: (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'oxide-dark' : 'oxide'),
         content_css: (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default'),
         height: '400',
-        menubar: false,
+        menubar: true,
         resize: true,
         toolbar_mode: 'floating',
-        toolbar: "formatgroup",
-        toolbar_groups: {
-          formatgroup: {
-              icon: 'format',
-              tooltip: 'Formatting',
-              items: 'bold italic underline strikethrough | forecolor backcolor | formatselect | removeformat'
-          },
-        },
-      });
+        toolbar: 'undo redo | formatselect | bold italic | alignleft aligncentre alignright alignjustify | bullist numlist',
+    });
 
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

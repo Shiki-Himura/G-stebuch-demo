@@ -1,3 +1,4 @@
+/* #region ROOT VARIABLES */
 :root {
     --m-color : #a70000;
     --m-color-hover : #d90000;
@@ -5,7 +6,9 @@
     --m-color-label: #ffffff;
     --m-color-category: #2c3034;
 }
+/* #endregion ROOT VARIABLES */
 
+/* #region DEFAULT OVERRIDES */
 *,
 *::before,
 *::after {
@@ -15,14 +18,10 @@
 body {
     background-color: rgb(20,20,20);
 }
+/* #endregion DEFAULT OVERRIDES */
 
-.navbar {
-    background: linear-gradient(172deg, #000000 0%, var(--m-color) 30%, #780000 45%, var(--m-color) 65%, #000000 100%);
-    color: rgb(255, 255, 255);
-}
-
-.tox.tox-tinymce {
-    padding: 0;
+.main-content {
+    margin-top: 2rem;
 }
 
 .usernamedisplay {
@@ -35,6 +34,132 @@ body {
     color: var(--m-color-hover);
 }
 
+.profile_active_link {
+    border: none;
+    box-shadow: 1px 1px 5px #a70000;
+    border-radius: 10px;
+}
+
+.profile_link_hover {
+    border: none;
+    box-shadow: 1px 1px 5px #a70000;
+    border-radius: 10px;
+}
+
+td#author {
+    vertical-align: middle;
+    text-align: start;
+}
+
+div#current-user {
+    text-align: center;
+}
+
+div a {
+    text-decoration: none;
+    text-shadow: 0px 1px 1px #000000;
+    color: var(--m-color);
+}
+
+label {
+    color: var(--m-color-label);
+}
+
+.nav-profileimg {
+    height: 40px;
+    padding: 1px;
+    border: 1px solid #ffffff;
+    border-radius: 50%;
+    background-color: white;
+}
+.profileimg {
+    height: 20vh;
+    width: 115px;
+    padding: 1px;
+    border: 1px solid #ffffff;
+    border-radius: 50%;
+    background-color: white;
+}
+
+a#navbarDarkDropdownMenuLink:after, a#navbarDarkDropdownMenuLink:before {
+    content: none;
+}
+
+[href]:hover {
+    color: var(--m-color-hover);
+}
+
+/* #region TINY MCE OVERRIDES */
+.tox.tox-tinymce {
+    padding: 0;
+    border: 1px solid #767676;
+}
+
+.tox.tox-tinymce.tox-platform-touch {
+    min-width: 400px;
+}
+
+.tox .tox-toolbar, .tox .tox-toolbar__overflow, .tox .tox-toolbar__primary {
+    background: none !important;
+    background-color: #212529 !important;
+    display: flex;
+    flex: 0 0 auto;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    padding: 0 0;
+}
+
+.tox .tox-menu {
+    background-color: #212529 !important;
+    border: none !important;
+    border-radius: 3px;
+    box-shadow: 0 4px 8px 0 rgba(42,55,70,.1);
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+    z-index: 1150;
+}
+
+.tox .tox-menubar {
+    background: none !important;
+    background-color: #212529 !important;
+    display: flex;
+    flex: 0 0 auto;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    padding: 0 4px 0 4px;
+}
+
+.tox .tox-dialog__header {
+    align-items: center;
+    background-color: #212529 !important;
+    border-bottom: none;
+    color: #fff;
+    display: flex;
+    font-size: 16px;
+    justify-content: space-between;
+    padding: 8px 16px 0 16px;
+    position: relative;
+}
+
+.tox .tox-statusbar {
+    align-items: center;
+    background-color: #212529 !important;
+    border-top: none !important;
+    color: #fff;
+    display: flex;
+    flex: 0 0 auto;
+    font-size: 12px;
+    font-weight: 400;
+    height: 18px;
+    overflow: hidden;
+    padding: 0 8px;
+    position: relative;
+    text-transform: uppercase;
+}
+/* #endregion TINY MCE OVERRIDES */
+
+/* #region ID RULES */
 #login_form_name,#login_form_pw {
     display: flex;
     flex-flow: column;
@@ -87,7 +212,7 @@ body {
 }
 
 #dbcontent {
-    margin: 5rem 0 0 0;
+    margin: 3rem 0 0 0;
 }
 
 #dbcontent>.col>.row {
@@ -102,45 +227,28 @@ body {
 #date {
     vertical-align: middle;
     text-align: end;
-    
 }
 
 #index_submit {
     width: fit-content;
     align-self: flex-end;
 }
+/* #endregion ID RULES */
 
-td#author {
-    vertical-align: middle;
-    text-align: start;
+/* #region BOOTSTRAP CLASS OVERRIDE */
+.row {
+    justify-content: center;
 }
 
-div#current-user {
+.row.text-white>.col-2 {
     text-align: center;
-    margin: 2rem 0 0 0;
 }
 
-div a {
-    text-decoration: none;
-    text-shadow: 0px 1px 1px #000000;
-    color: var(--m-color);
+.navbar {
+    background: linear-gradient(90deg, #141414 5%, #780000 40%, #780000 70%, #141414 95%);
+    color: rgb(255, 255, 255);
+    min-width: 500px;
 }
-
-label {
-    color: var(--m-color-label);
-}
-
-.profileimg {
-    height: 40px;
-    padding: 1px;
-    border: 1px solid #ffffff;
-    border-radius: 50%;
-    background-color: white;
-}
-
-/* ul.list.d-flex.flex-row {
-    border: 4px outset darkred;
-} */
 
 li.nav-item.dropstart {
     margin-left: auto;
@@ -156,16 +264,9 @@ li.list-group-item.list-group-item-dark.border-dark {
 li.list-group-item {
     margin: 0 0 1rem 0;
 }
+/* #endregion BOOTSTRAP CLASS OVERRIDE */
 
-a#navbarDarkDropdownMenuLink:after, a#navbarDarkDropdownMenuLink:before {
-    content: none;
-}
-
-[href]:hover {
-    color: var(--m-color-hover);
-}
-
-/* Bootstrap dropdown override */
+/* #region BOOTSTRAP DROPDOWN OVERRIDE */
 li.dropdown-item {
     border: none;
     border-left: 4px solid #a70000!important;
@@ -189,3 +290,4 @@ ul.dropdown-menu.dropdown-menu-end.dropdown-menu-lg-end.dropdown-menu-dark.show 
     color: #fff;
     background-color: var(--m-color-category);
 }
+/* #endregion BOOTSTRAP DROPDOWN OVERRIDE */

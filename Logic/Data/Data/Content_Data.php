@@ -20,11 +20,11 @@ class Content_Data
         return $this->db->Execute($query);
     }
 
-    public function GetEntryCount()
+    public function GetUserProfileInfo()
     {
         $username = ($_GET['username']) ? $_GET['username'] : $_SESSION['valid_user'];
         
-        $query = "SELECT Count(user_ID) AS postcount FROM `content` JOIN userdata ON content.user_ID WHERE content.user_ID = userdata.ID AND userdata.username = '".$username."'";
+        $query = "SELECT Count(user_ID) AS postcount,CreationDate AS MemberSince FROM `content` JOIN userdata ON content.user_ID WHERE content.user_ID = userdata.ID AND userdata.username = '".$username."'";
         return $this->db->Execute($query);
     }
 

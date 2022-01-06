@@ -40,19 +40,52 @@ class ContentManager
         echo $html;
     }
 
-    public function GetAllEntriesAsCount($username)
+    public function GetProfile($username)
     {
-        $result = $this->content->GetEntryCount();
+        // Get Info about User and build Profile
+        $result = $this->content->GetUserProfileInfo();
         $userprofile = "";
 
         for ($i = 0; $i < Count($result); $i++)
         {
-            // implement display of all user posts when you click the count on their profile
-            $previewBody = "<div class='d-flex flex-column mt-5 text-white'>
-                                <h1><u>Profile</u></h1>
-                                <div class='fs-4'>Username: ".$username."</div>
-                                <div class='fs-4'>Posts: <a href='#'>".$result[$i]->postcount."</a></div>
-                            </div>";
+            $previewBody = "
+        <div class='row text-white'>
+            <div class='col-2'>
+                <div class='row profile_image_large'>
+                    <img class='profileimg' src='img/smallprofpic.png'></img>
+                </div>
+                <div class='row profile_link'>
+                    <a href='#'>Profile</a>
+                </div>
+                <div class='row profile_link'>
+                    <a href='#'>Test</a>
+                </div>
+                <div class='row profile_link'>
+                    <a href='#'>Test</a>
+                </div>
+                <div class='row profile_link'>
+                    <a href='#'>Logout</a>
+                </div>
+            </div>
+            <div class='col'>
+                <div class='row'>
+                    <h1>
+                        Profile
+                    </h1>
+                </div>
+                <div class='row'>
+                    <div class='col'>
+                        <div class='fs-4'>
+                            Username: ".$username."
+                        </div>
+                        <div class='fs-4'>
+                            Posts: 
+                            <a href='#'>".$result[$i]->postcount."</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>";
             $userprofile .= $previewBody;
         }
         echo $userprofile;
@@ -211,7 +244,7 @@ if($_SERVER['REQUEST_URI'] == "/g%C3%A4stebuch-demo/userprofile.php?username=".(
         $username = "Invalid User!";
     else
         $username = ucwords($_GET['username']);
-    $manager->GetAllEntriesAsCount($username);
+    $manager->GetProfile($username);
     $manager->GetAllEntriesFromProfile();
 }
 ?>

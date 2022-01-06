@@ -29,35 +29,34 @@
                 <ul class="navbar-nav mb-2 mb-lg-0" id="accessbtns">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img class="profileimg" src="img/smallprofpic.png"></img>
+                            <img class="nav-profileimg" src="img/smallprofpic.png"></img>
                         </a>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-end dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-end dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                         <?php
                             if(!isset($_SESSION['valid_user']))
                                 $_SESSION['valid_user'] = null;
-                            $nouser = "
-                                <li class='dropdown-item'>
-                                    <a class='nav-link' href='login.php'>Sign In</a>
-                                </li>
-                                <li class='dropdown-item'>
-                                    <a class='nav-link' href='register.php'>Register</a>
-                                </li>";
-                            $loggedin = "
-                                <li class='dropdown-item'>
-                                    <a class='nav-link' href='userprofile.php?username=".$_SESSION['valid_user']."'>Profile</a>
-                                </li>
-                                <li class='dropdown-item'>
-                                    <a class='nav-link' id='logout_user' href='javascript:void(0)'>Sign Out</a>
-                                </li>";
+                            $nouser = "<li class='dropdown-item'>
+                                           <a class='nav-link' href='login.php'>Sign In</a>
+                                       </li>
+                                       <li class='dropdown-item'>
+                                           <a class='nav-link' href='register.php'>Register</a>
+                                       </li>";
+                            $loggedin = "   <li class='dropdown-item'>
+                                            <a class='nav-link' href='userprofile.php?username=".$_SESSION['valid_user']."'>Profile</a>
+                                        </li>
+                                        <li class='dropdown-item'>
+                                            <a class='nav-link' id='logout_user' href='javascript:void(0)'>Sign Out</a>
+                                        </li>";
                             if(isset($_SESSION['valid_user']))
                                 echo($loggedin);
                             else
                                 echo($nouser);
                         ?>
-                    </ul>
+                        
+                        </ul>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <div class="container">
+    <div class="container main-content">
