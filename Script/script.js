@@ -1,11 +1,6 @@
 $(function(){
 
     $(".profile_link").on({
-        click: function(link) {
-            $temp = $(".profile_link").find(".profile_active_link");
-            $temp.removeClass("profile_active_link");
-            $(link.target).addClass("profile_active_link");
-        },
         mouseenter: function(link) {
             $(link.target).addClass("profile_link_hover").css("cursor", "pointer");
         },
@@ -145,12 +140,12 @@ $(function(){
     });
 
     // logout user
-    $("#logout_user").on("click", function() {
+    $("#logout_user_nav,#logout_user_profile").on("click", function() {
         $.post("Logic/AccountManager.php", 
                 {
                     key: "execlogout",
                     success: function(){
-                        window.location.href = "./index.php";
+                        window.location.href = "index.php";
                     }
                 });
     });
@@ -180,11 +175,11 @@ $(function(){
     });
 
     $("#post_submit").on("click", function(){
-        let post_title = tinymce.get("post-title").getContent();
-        let post_description = tinymce.get("post-description").getContent();
+        let post_title = $("#post-title");
+        let post_description = $("#post-description");
         let post_text = tinymce.get("post-text").getContent();
 
-        if(post_title == "" || post_description == "" || post_text == "")
+        if(post_title.val() == "" || post_description.val() == "" || post_text == "")
         {
             alert("Please enter missing Information!");
             return;
@@ -194,8 +189,8 @@ $(function(){
         $.post("Logic/ContentManager.php?"+get_urlval,
                 {
                     key: "setpost",
-                    title: post_title,
-                    description: post_description,
+                    title: post_title.val(),
+                    description: post_description.val(),
                     posttext: post_text,
                     success: function(){
                         window.location.href = "index.php";

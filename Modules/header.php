@@ -45,7 +45,7 @@
                                             <a class='nav-link' href='userprofile.php?username=".$_SESSION['valid_user']."'>Profile</a>
                                         </li>
                                         <li class='dropdown-item'>
-                                            <a class='nav-link' id='logout_user' href='javascript:void(0)'>Sign Out</a>
+                                            <a class='nav-link' id='logout_user_nav' href='javascript:void(0)'>Sign Out</a>
                                         </li>";
                             if(isset($_SESSION['valid_user']))
                                 echo($loggedin);

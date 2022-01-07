@@ -73,8 +73,8 @@ label {
     background-color: white;
 }
 .profileimg {
-    height: 20vh;
-    width: 115px;
+    height: 75%;
+    width: 75%;
     padding: 1px;
     border: 1px solid #ffffff;
     border-radius: 50%;
@@ -199,7 +199,7 @@ a#navbarDarkDropdownMenuLink:after, a#navbarDarkDropdownMenuLink:before {
 
 #newpostbtn {
     text-Shadow: 2px 2px 5px #000000;
-    margin-bottom: -0.25rem;
+    margin-bottom: -1.6rem;
 }
 
 #reginfo {
@@ -238,6 +238,7 @@ a#navbarDarkDropdownMenuLink:after, a#navbarDarkDropdownMenuLink:before {
 /* #region BOOTSTRAP CLASS OVERRIDE */
 .row {
     justify-content: center;
+    margin: 1rem;
 }
 
 .row.text-white>.col-2 {

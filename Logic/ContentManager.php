@@ -43,10 +43,13 @@ class ContentManager
     public function GetProfile($username)
     {
         // Get Info about User and build Profile
-        $result = $this->content->GetUserProfileInfo();
+        $profilearray = $this->content->GetUserProfileInfo();
         $userprofile = "";
+        $profilelogout = "<div class='row profile_link'>
+                            <a class='fs-4' id='logout_user_profile' href='javascript:void(0)'>Logout</a>
+                        </div>";
 
-        for ($i = 0; $i < Count($result); $i++)
+        for ($i = 0; $i < Count($profilearray); $i++)
         {
             $previewBody = "
         <div class='row text-white'>
@@ -55,17 +58,15 @@ class ContentManager
                     <img class='profileimg' src='img/smallprofpic.png'></img>
                 </div>
                 <div class='row profile_link'>
-                    <a href='#'>Profile</a>
+                    <a class='fs-4' href='userprofile.php?username=".$_GET['username']."'>Profile</a>
                 </div>
                 <div class='row profile_link'>
-                    <a href='#'>Test</a>
+                    <a class='fs-4' href='#'>Sample</a>
                 </div>
                 <div class='row profile_link'>
-                    <a href='#'>Test</a>
+                    <a class='fs-4' href='#'>Sample</a>
                 </div>
-                <div class='row profile_link'>
-                    <a href='#'>Logout</a>
-                </div>
+                ".($_GET['username'] == $_SESSION['valid_user'] ? $profilelogout : null)."
             </div>
             <div class='col'>
                 <div class='row'>
@@ -75,13 +76,19 @@ class ContentManager
                 </div>
                 <div class='row'>
                     <div class='col'>
-                        <div class='fs-4'>
+                        <div class='fs-5'>
                             Username: ".$username."
+                            <div>test</div>
                         </div>
-                        <div class='fs-4'>
+                        <div class='fs-5'>
                             Posts: 
-                            <a href='#'>".$result[$i]->postcount."</a>
+                            <a href='#'>".$profilearray[$i]->postcount."</a>
                         </div>
+                    </div>
+                </div>
+                <div class='row' id='profile_posts'>
+                    <div class='col'>
+                        ".$this->GetAllEntriesFromProfile()."
                     </div>
                 </div>
             </div>
@@ -109,7 +116,7 @@ class ContentManager
                             </div>";
             $profile_entry .= $previewBody;
         }
-        echo $profile_entry;
+        return $profile_entry;
     }
 
     public function SetEntry()
@@ -245,6 +252,6 @@ if($_SERVER['REQUEST_URI'] == "/g%C3%A4stebuch-demo/userprofile.php?username=".(
     else
         $username = ucwords($_GET['username']);
     $manager->GetProfile($username);
-    $manager->GetAllEntriesFromProfile();
+    //$manager->GetAllEntriesFromProfile();
 }
 ?>
